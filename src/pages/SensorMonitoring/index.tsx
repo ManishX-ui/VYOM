@@ -157,8 +157,8 @@ export const SensorMonitoringPage: React.FC = () => {
           MAIN SENSOR CARDS GRID & DETAILS DRAWER
           ========================================= */}
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 items-stretch">
-        {/* Left: Sensor Cards (7 or 8 Cols) */}
-        <div className="lg:col-span-7 grid grid-cols-1 sm:grid-cols-2 gap-3.5 items-stretch">
+        {/* Left: Sensor Cards (Fixed normal height tiles across all categories & filters) */}
+        <div className="lg:col-span-7 grid grid-cols-1 sm:grid-cols-2 gap-3.5 content-start auto-rows-[136px]">
           {filteredSensors.map((sensor) => {
             const isSelected = activeSensor?.id === sensor.id;
             const isWarning = sensor.status === 'Warning';
@@ -167,7 +167,7 @@ export const SensorMonitoringPage: React.FC = () => {
               <div
                 key={sensor.id}
                 onClick={() => setActiveSensor(sensor)}
-                className={`p-4 rounded-xl border transition-all cursor-pointer bg-white shadow-2xs flex flex-col justify-between h-full ${
+                className={`p-4 rounded-xl border transition-all cursor-pointer bg-white shadow-2xs flex flex-col justify-between h-[136px] ${
                   isSelected
                     ? 'border-blue-500 ring-2 ring-blue-500/20'
                     : isWarning
@@ -234,6 +234,12 @@ export const SensorMonitoringPage: React.FC = () => {
               </div>
             );
           })}
+
+          {filteredSensors.length === 0 && (
+            <div className="col-span-full h-[136px] flex flex-col items-center justify-center p-6 rounded-xl bg-white border border-slate-200 text-center text-slate-500 text-xs font-mono shadow-2xs">
+              <span>No sensors found matching the selected filter criteria.</span>
+            </div>
+          )}
         </div>
 
         {/* Right: Selected Sensor Deep-Dive Panel (Stretches to perfectly align top to bottom with left grid) */}
