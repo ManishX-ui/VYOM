@@ -76,13 +76,6 @@ export const DashboardPage: React.FC = () => {
 
         {/* UAV Platform Card */}
         <div className="flex items-center gap-3.5 p-3 rounded-xl bg-slate-50 border border-slate-200/80">
-          <div className="w-12 h-10 rounded-lg bg-white border border-slate-200 flex items-center justify-center p-1 overflow-hidden">
-            <img
-              src="/assets/aistudio/Front-Facing_Gray_Military_UAV_4ffa5275.png"
-              alt="MALE UAV"
-              className="w-full h-full object-contain"
-            />
-          </div>
           <div>
             <div className="flex items-center gap-2">
               <span className="font-bold text-xs text-slate-900">{selectedUAV.name}</span>

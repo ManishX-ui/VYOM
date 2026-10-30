@@ -196,19 +196,14 @@ export const EngineHealthPage: React.FC = () => {
       {selectedComponent ? (
         <div className="p-5 rounded-2xl bg-white border border-blue-200 shadow-2xs space-y-4 animate-in fade-in duration-150">
           <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 pb-3 border-b border-slate-100">
-            <div className="flex items-center gap-3">
-              <div className="w-10 h-10 rounded-xl bg-blue-600 text-white flex items-center justify-center font-bold">
-                <Cpu className="w-5 h-5" />
+            <div>
+              <div className="flex items-center gap-2">
+                <h3 className="font-bold text-slate-900 text-base">{selectedComponent.name}</h3>
+                <span className="text-xs font-mono px-2 py-0.5 rounded bg-blue-50 text-blue-700 border border-blue-200 font-semibold">
+                  {selectedComponent.category}
+                </span>
               </div>
-              <div>
-                <div className="flex items-center gap-2">
-                  <h3 className="font-bold text-slate-900 text-base">{selectedComponent.name}</h3>
-                  <span className="text-xs font-mono px-2 py-0.5 rounded bg-blue-50 text-blue-700 border border-blue-200 font-semibold">
-                    {selectedComponent.category}
-                  </span>
-                </div>
-                <p className="text-xs text-slate-500">{selectedComponent.description}</p>
-              </div>
+              <p className="text-xs text-slate-500">{selectedComponent.description}</p>
             </div>
 
             <div className="flex items-center gap-3 font-mono text-xs">

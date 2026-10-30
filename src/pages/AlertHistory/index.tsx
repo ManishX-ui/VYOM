@@ -179,17 +179,17 @@ export const AlertHistoryPage: React.FC = () => {
           ========================================= */}
       <div className="bg-white rounded-2xl border border-slate-200 shadow-2xs overflow-hidden">
         <div className="overflow-x-auto">
-          <table className="min-w-full text-left text-xs divide-y divide-slate-200">
+          <table className="w-full text-left text-xs">
             <thead>
-              <tr className="bg-slate-50/90 text-slate-500 font-semibold font-mono text-[11px] uppercase tracking-wider">
-                <th className="py-3.5 px-4 whitespace-nowrap w-[110px]">Alert ID</th>
-                <th className="py-3.5 px-4 whitespace-nowrap w-[140px]">Timestamp</th>
-                <th className="py-3.5 px-4 whitespace-nowrap w-[110px]">Severity</th>
-                <th className="py-3.5 px-4 min-w-[220px]">Title &amp; Component</th>
-                <th className="py-3.5 px-4 whitespace-nowrap w-[130px]">Parameter</th>
-                <th className="py-3.5 px-4 whitespace-nowrap w-[160px]">Measured Value</th>
-                <th className="py-3.5 px-4 whitespace-nowrap w-[120px]">Status</th>
-                <th className="py-3.5 px-4 whitespace-nowrap text-right w-[190px]">Actions</th>
+              <tr className="bg-slate-50/80 border-b border-slate-200 text-slate-500 font-semibold font-mono text-[11px]">
+                <th className="py-3 px-4">Alert ID</th>
+                <th className="py-3 px-4">Timestamp</th>
+                <th className="py-3 px-4">Severity</th>
+                <th className="py-3 px-4">Title &amp; Component</th>
+                <th className="py-3 px-4">Parameter</th>
+                <th className="py-3 px-4">Measured Value</th>
+                <th className="py-3 px-4">Status</th>
+                <th className="py-3 px-4 text-right">Actions</th>
               </tr>
             </thead>
             <tbody className="divide-y divide-slate-100">
@@ -202,58 +202,52 @@ export const AlertHistoryPage: React.FC = () => {
               ) : (
                 filteredAlerts.map((alert) => (
                   <tr key={alert.id} className="hover:bg-slate-50/80 transition-colors">
-                    <td className="py-3.5 px-4 font-mono font-bold text-slate-900 whitespace-nowrap align-middle">
-                      {alert.id}
-                    </td>
-                    <td className="py-3.5 px-4 font-mono text-slate-600 whitespace-nowrap align-middle">
-                      {alert.timestamp}
-                    </td>
-                    <td className="py-3.5 px-4 whitespace-nowrap align-middle">
+                    <td className="py-3 px-4 font-mono font-bold text-slate-800">{alert.id}</td>
+                    <td className="py-3 px-4 font-mono text-slate-500">{alert.timestamp}</td>
+                    <td className="py-3 px-4">
                       <span
-                        className={`inline-flex items-center font-mono text-[10px] font-semibold px-2.5 py-0.5 rounded-md border ${
+                        className={`font-mono text-[10px] font-semibold px-2 py-0.5 rounded ${
                           alert.severity === 'Critical'
-                            ? 'bg-red-50 text-red-700 border-red-200/80'
+                            ? 'bg-red-50 text-red-700 border border-red-200'
                             : alert.severity === 'Warning'
-                            ? 'bg-amber-50 text-amber-700 border-amber-200/80'
-                            : 'bg-blue-50 text-blue-700 border-blue-200/80'
+                            ? 'bg-amber-50 text-amber-700 border border-amber-200'
+                            : 'bg-blue-50 text-blue-700 border border-blue-200'
                         }`}
                       >
                         {alert.severity}
                       </span>
                     </td>
-                    <td className="py-3.5 px-4 align-middle">
-                      <p className="font-semibold text-slate-900 text-xs leading-snug">{alert.title}</p>
-                      <p className="text-[10px] text-slate-500 font-mono mt-0.5">{alert.relatedComponent}</p>
+                    <td className="py-3 px-4">
+                      <p className="font-semibold text-slate-800 leading-tight">{alert.title}</p>
+                      <p className="text-[10px] text-slate-400 font-mono mt-0.5">{alert.relatedComponent}</p>
                     </td>
-                    <td className="py-3.5 px-4 font-mono text-slate-700 whitespace-nowrap align-middle">
-                      {alert.parameter}
-                    </td>
-                    <td className="py-3.5 px-4 font-mono whitespace-nowrap align-middle">
-                      <span className="font-bold text-slate-900 text-xs block leading-tight">{alert.currentValue}</span>
-                      <span className="text-[10px] font-normal text-slate-500 block mt-0.5">
+                    <td className="py-3 px-4 font-mono text-slate-600">{alert.parameter}</td>
+                    <td className="py-3 px-4 font-mono font-bold text-slate-800">
+                      {alert.currentValue}
+                      <span className="text-[10px] font-normal text-slate-400 block font-mono">
                         Range: {alert.expectedRange}
                       </span>
                     </td>
-                    <td className="py-3.5 px-4 whitespace-nowrap align-middle">
+                    <td className="py-3 px-4">
                       <span
-                        className={`inline-flex items-center font-mono text-[10px] font-semibold px-2.5 py-0.5 rounded-md border ${
+                        className={`font-mono text-[10px] font-semibold px-2 py-0.5 rounded ${
                           alert.status === 'Active'
-                            ? 'bg-red-50 text-red-700 border-red-200'
+                            ? 'bg-red-100 text-red-800'
                             : alert.status === 'Acknowledged'
-                            ? 'bg-blue-50 text-blue-700 border-blue-200'
-                            : 'bg-slate-100 text-slate-600 border-slate-200'
+                            ? 'bg-blue-100 text-blue-800'
+                            : 'bg-slate-100 text-slate-600'
                         }`}
                       >
                         {alert.status}
                       </span>
                     </td>
-                    <td className="py-3.5 px-4 text-right whitespace-nowrap align-middle">
-                      <div className="inline-flex items-center justify-end gap-1.5">
+                    <td className="py-3 px-4 text-right">
+                      <div className="flex items-center justify-end gap-1.5">
                         {/* Acknowledge Button */}
                         {alert.status === 'Active' && (
                           <button
                             onClick={() => acknowledgeAlert(alert.id)}
-                            className="px-2.5 py-1 rounded-lg bg-blue-50 hover:bg-blue-100 text-blue-700 border border-blue-200 text-[11px] font-semibold transition-colors shadow-2xs cursor-pointer"
+                            className="px-2 py-1 rounded bg-blue-50 text-blue-700 hover:bg-blue-100 border border-blue-200 text-[11px] font-semibold transition-colors"
                           >
                             Acknowledge
                           </button>
@@ -263,7 +257,7 @@ export const AlertHistoryPage: React.FC = () => {
                         {alert.status !== 'Resolved' && (
                           <button
                             onClick={() => resolveAlert(alert.id)}
-                            className="px-2.5 py-1 rounded-lg bg-emerald-50 hover:bg-emerald-100 text-emerald-700 border border-emerald-200 text-[11px] font-semibold transition-colors shadow-2xs cursor-pointer"
+                            className="px-2 py-1 rounded bg-emerald-50 text-emerald-700 hover:bg-emerald-100 border border-emerald-200 text-[11px] font-semibold transition-colors"
                           >
                             Resolve
                           </button>
@@ -272,7 +266,7 @@ export const AlertHistoryPage: React.FC = () => {
                         {/* Details Modal Trigger */}
                         <button
                           onClick={() => setSelectedAlertModal(alert)}
-                          className="p-1.5 rounded-lg text-slate-400 hover:text-slate-700 hover:bg-slate-100 transition-colors cursor-pointer"
+                          className="p-1 rounded text-slate-400 hover:text-slate-700 transition-colors"
                           title="View Details"
                         >
                           <Eye className="w-4 h-4" />

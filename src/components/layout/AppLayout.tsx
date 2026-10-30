@@ -161,17 +161,14 @@ export const AppLayout: React.FC = () => {
               </span>
             </div>
 
-            <div className="flex items-center gap-2.5 mt-1.5">
-              <div className="w-7 h-7 rounded-lg bg-blue-50 border border-blue-100 flex items-center justify-center shrink-0">
-                <Plane className="w-3.5 h-3.5 text-blue-600" />
-              </div>
+            <div className="flex items-center justify-between gap-2.5 mt-1.5">
               <div className="min-w-0 flex-1">
                 <p className="text-xs font-bold text-slate-900 truncate group-hover:text-blue-600 transition-colors">
                   {selectedUAV.name}
                 </p>
                 <p className="text-[10px] font-mono text-slate-400 truncate">{selectedUAV.id}</p>
               </div>
-              <ChevronRight className="w-3.5 h-3.5 text-slate-400 group-hover:text-slate-700 transition-all group-hover:translate-x-0.5" />
+              <ChevronRight className="w-3.5 h-3.5 text-slate-400 group-hover:text-slate-700 transition-all group-hover:translate-x-0.5 shrink-0" />
             </div>
           </Link>
         </div>
