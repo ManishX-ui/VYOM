@@ -1,0 +1,6 @@
+{
+  "name": "VYOM — UAV Digital Twin & Engine Health Monitoring",
+  "description": "Advanced UAV Digital Twin & Aero-Piston Engine Health Monitoring Platform for MALE UAV operations with real-time telemetry, 3D engine visualization, mission replay, anomaly detection, and predictive maintenance.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
