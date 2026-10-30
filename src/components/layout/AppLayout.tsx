@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import { NavLink, Outlet, Navigate, Link } from 'react-router-dom';
+import React, { useState, useEffect, useRef } from 'react';
+import { NavLink, Outlet, Navigate, Link, useLocation } from 'react-router-dom';
 import { useApp } from '../../context/AppContext';
 import { TopHeader } from './TopHeader';
 import {
@@ -24,6 +24,16 @@ import {
 export const AppLayout: React.FC = () => {
   const { user, selectedUAV, toasts, dismissToast, alerts } = useApp();
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const location = useLocation();
+  const mainContentRef = useRef<HTMLElement>(null);
+
+  // Reset scroll position to top whenever navigating between pages
+  useEffect(() => {
+    if (mainContentRef.current) {
+      mainContentRef.current.scrollTo({ top: 0, left: 0, behavior: 'instant' });
+    }
+    window.scrollTo({ top: 0, left: 0, behavior: 'instant' });
+  }, [location.pathname]);
 
   // If user logged out of demo, guard route and return to landing
   if (!user.isAuthenticated) {
@@ -200,7 +210,7 @@ export const AppLayout: React.FC = () => {
         <TopHeader />
 
         {/* Scrollable Page Content */}
-        <main className="flex-1 overflow-y-auto p-4 md:p-6 bg-slate-50">
+        <main ref={mainContentRef} className="flex-1 overflow-y-auto p-4 md:p-6 bg-slate-50">
           <Outlet />
         </main>
       </div>

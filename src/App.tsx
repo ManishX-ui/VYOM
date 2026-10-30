@@ -1,5 +1,5 @@
-import React from 'react';
-import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
+import React, { useEffect } from 'react';
+import { BrowserRouter, Routes, Route, Navigate, useLocation } from 'react-router-dom';
 import { AppProvider } from './context/AppContext';
 import { AppLayout } from './components/layout/AppLayout';
 import { AdminLoginPage } from './pages/AdminLogin';
@@ -13,10 +13,21 @@ import { AnomalyDetectionPage } from './pages/AnomalyDetection';
 import { FaultPredictionPage } from './pages/FaultPrediction';
 import { AlertHistoryPage } from './pages/AlertHistory';
 
+function ScrollToTop() {
+  const { pathname } = useLocation();
+
+  useEffect(() => {
+    window.scrollTo({ top: 0, left: 0, behavior: 'instant' });
+  }, [pathname]);
+
+  return null;
+}
+
 export default function App() {
   return (
     <AppProvider>
       <BrowserRouter>
+        <ScrollToTop />
         <Routes>
           {/* Public Landing & Admin Login */}
           <Route path="/" element={<AdminLoginPage />} />
