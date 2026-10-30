@@ -46,25 +46,25 @@ export const AppLayout: React.FC = () => {
   return (
     <div className="flex h-screen w-screen overflow-hidden bg-slate-50 text-slate-900">
       {/* =========================================
-          LEFT SIDEBAR (Refined Aero Ice-Blue - #E3F2FD)
+          LEFT SIDEBAR (Aero Mint Cyan - #DFF1F1)
           ========================================= */}
       <aside
-        className={`fixed inset-y-0 left-0 z-40 w-64 bg-[#E3F2FD] text-slate-800 border-r border-[#BBDEFB] flex flex-col justify-between transition-transform duration-200 ease-in-out md:static md:translate-x-0 ${
+        className={`fixed inset-y-0 left-0 z-40 w-64 bg-[#DFF1F1] text-slate-800 border-r border-[#BCE4E4] flex flex-col justify-between transition-transform duration-200 ease-in-out md:static md:translate-x-0 ${
           isMobileMenuOpen ? 'translate-x-0 shadow-2xl' : '-translate-x-full'
         }`}
       >
         {/* Brand Header */}
         <div>
-          <div className="flex items-center justify-between h-16 px-5 border-b border-[#BBDEFB]">
+          <div className="flex items-center justify-between h-16 px-5 border-b border-[#BCE4E4]">
             <Link to="/app/dashboard" className="flex items-center gap-3 group">
               <img
                 src="/assets/vyom-logo.png"
                 alt="VYOM Logo"
-                className="w-9 h-9 rounded-full object-cover shadow-xs group-hover:scale-105 transition-transform ring-2 ring-blue-300/60 bg-white"
+                className="w-9 h-9 rounded-full object-cover shadow-xs group-hover:scale-105 transition-transform ring-2 ring-teal-300/60 bg-white"
               />
               <div className="flex flex-col">
                 <span className="font-black text-lg tracking-wider text-slate-900">VYOM</span>
-                <span className="text-[10px] font-mono tracking-tight text-blue-900/80 font-bold uppercase -mt-1">
+                <span className="text-[10px] font-mono tracking-tight text-teal-900/80 font-bold uppercase -mt-1">
                   Virtual Yield &amp; Operational Monitoring
                 </span>
               </div>
@@ -73,7 +73,7 @@ export const AppLayout: React.FC = () => {
             {/* Mobile Close Button */}
             <button
               onClick={() => setIsMobileMenuOpen(false)}
-              className="p-1 rounded-md text-slate-500 hover:text-slate-900 hover:bg-white/60 md:hidden"
+              className="p-1 rounded-md text-teal-800 hover:text-slate-950 hover:bg-white/60 md:hidden"
             >
               <X className="w-5 h-5" />
             </button>
@@ -91,8 +91,8 @@ export const AppLayout: React.FC = () => {
                   className={({ isActive }) =>
                     `flex items-center justify-between px-3.5 py-2.5 rounded-xl text-xs transition-all ${
                       isActive
-                        ? 'bg-blue-600 text-white shadow-sm font-semibold'
-                        : 'text-slate-700 hover:text-slate-950 hover:bg-white/75 font-medium'
+                        ? 'bg-[#0F766E] text-white shadow-sm font-semibold'
+                        : 'text-slate-700 hover:text-slate-950 hover:bg-white/70 font-medium'
                     }`
                   }
                 >
@@ -101,7 +101,7 @@ export const AppLayout: React.FC = () => {
                       <div className="flex items-center gap-3">
                         <Icon
                           className={`w-4 h-4 shrink-0 transition-colors ${
-                            isActive ? 'text-white' : 'text-blue-600/80'
+                            isActive ? 'text-[#CCFBF1]' : 'text-[#0F766E]/80'
                           }`}
                         />
                         <span>{item.label}</span>
@@ -111,8 +111,8 @@ export const AppLayout: React.FC = () => {
                         <span
                           className={`px-1.5 py-0.5 text-[10px] font-mono font-bold rounded ${
                             isActive
-                              ? 'bg-white/20 text-white border border-white/30'
-                              : 'bg-amber-100 text-amber-900 border border-amber-300'
+                              ? 'bg-amber-400 text-slate-950 shadow-xs'
+                              : 'bg-amber-100 text-amber-950 border border-amber-300'
                           }`}
                         >
                           {item.badge}
@@ -123,7 +123,7 @@ export const AppLayout: React.FC = () => {
                         <span
                           className={`px-1.5 py-0.5 text-[10px] font-mono font-bold rounded-full ${
                             isActive
-                              ? 'bg-white text-blue-600 shadow-xs'
+                              ? 'bg-white text-teal-800 shadow-xs'
                               : 'bg-red-500 text-white shadow-xs'
                           }`}
                         >
@@ -139,34 +139,34 @@ export const AppLayout: React.FC = () => {
         </div>
 
         {/* Sidebar Footer: Selected UAV info */}
-        <div className="p-3 border-t border-[#BBDEFB]">
+        <div className="p-3 border-t border-[#BCE4E4]">
           {/* Selected UAV Demonstration Card */}
           <Link
             to="/connect-uav"
             title="Click to Switch or Pair UAV"
-            className="block p-2.5 rounded-xl bg-white/90 hover:bg-white border border-[#BBDEFB] hover:border-blue-300 shadow-2xs hover:shadow-xs transition-all group backdrop-blur-xs"
+            className="block p-2.5 rounded-xl bg-white/85 hover:bg-white border border-[#BCE4E4] hover:border-teal-300 shadow-2xs hover:shadow-xs transition-all group backdrop-blur-xs"
           >
             <div className="flex items-center justify-between mb-1">
-              <span className="text-[10px] uppercase tracking-wider text-slate-500 font-semibold">
+              <span className="text-[10px] uppercase tracking-wider text-teal-900/70 font-bold">
                 Active Platform
               </span>
-              <span className="flex items-center gap-1 text-[10px] font-mono font-semibold text-emerald-700 bg-emerald-50 px-1.5 py-0.5 rounded border border-emerald-200">
+              <span className="flex items-center gap-1 text-[10px] font-mono font-bold text-emerald-800 bg-emerald-50 px-1.5 py-0.5 rounded border border-emerald-200">
                 <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" />
                 ONLINE
               </span>
             </div>
 
             <div className="flex items-center gap-2.5 mt-1.5">
-              <div className="w-7 h-7 rounded-lg bg-blue-50 border border-blue-200/80 flex items-center justify-center shrink-0">
-                <Plane className="w-3.5 h-3.5 text-blue-600" />
+              <div className="w-7 h-7 rounded-lg bg-teal-50 border border-teal-200/80 flex items-center justify-center shrink-0">
+                <Plane className="w-3.5 h-3.5 text-teal-700" />
               </div>
               <div className="min-w-0 flex-1">
-                <p className="text-xs font-bold text-slate-800 truncate group-hover:text-blue-600 transition-colors">
+                <p className="text-xs font-bold text-slate-900 truncate group-hover:text-teal-700 transition-colors">
                   {selectedUAV.name}
                 </p>
-                <p className="text-[10px] font-mono text-slate-500 truncate">{selectedUAV.id}</p>
+                <p className="text-[10px] font-mono text-teal-800/70 truncate">{selectedUAV.id}</p>
               </div>
-              <ChevronRight className="w-3.5 h-3.5 text-slate-400 group-hover:text-blue-600 transition-all group-hover:translate-x-0.5" />
+              <ChevronRight className="w-3.5 h-3.5 text-teal-600/60 group-hover:text-teal-800 transition-all group-hover:translate-x-0.5" />
             </div>
           </Link>
         </div>
