@@ -292,7 +292,9 @@ export const AnomalyDetectionPage: React.FC = () => {
           <div className="p-5 rounded-2xl bg-white border border-slate-200 shadow-2xs space-y-3 flex-1 flex flex-col justify-between">
             <div className="flex items-center justify-between pb-1">
               <h4 className="font-bold text-slate-900 text-sm">Anomaly Score</h4>
-              <Info className="w-4 h-4 text-slate-400" title="Statistical anomaly score" />
+              <span title="Statistical anomaly score">
+                <Info className="w-4 h-4 text-slate-400 cursor-help" />
+              </span>
             </div>
 
             {/* Circular Gauge / Numerical Score */}
