@@ -36,8 +36,18 @@ class TelemetryService {
     this.setStatus(this.status === 'DISCONNECTED' ? 'CONNECTING' : 'RECONNECTING');
     this.isConnecting = true;
 
-    const defaultUrl = (import.meta.env.VITE_API_BASE_URL || 'http://localhost:8000')
-      .replace(/^http/, 'ws') + '/api/v1/telemetry/ws';
+    let baseWsUrl = import.meta.env.VITE_API_BASE_URL;
+    if (!baseWsUrl) {
+      if (typeof window !== 'undefined' && window.location && window.location.host && !import.meta.env.DEV) {
+        const protocol = window.location.protocol === 'https:' ? 'wss:' : 'ws:';
+        baseWsUrl = `${protocol}//${window.location.host}`;
+      } else {
+        baseWsUrl = 'ws://localhost:8000';
+      }
+    } else {
+      baseWsUrl = baseWsUrl.replace(/^http/, 'ws');
+    }
+    const defaultUrl = `${baseWsUrl.replace(/\/$/, '')}/api/v1/telemetry/ws`;
     const targetUrl = wsUrl || defaultUrl;
 
     try {
