@@ -13,6 +13,7 @@ import { FaultPredictionPage } from '../pages/FaultPrediction';
 import { AlertHistoryPage } from '../pages/AlertHistory';
 import { DatalinkMonitoringPage } from '../pages/DatalinkMonitoring';
 import { DigitalTwinPage } from '../pages/DigitalTwin';
+import { GeospatialTrackingPage } from '../pages/GeospatialTracking';
 
 export function ScrollToTop() {
   const { pathname } = useLocation();
@@ -43,6 +44,7 @@ export const AppRoutes: React.FC = () => {
           <Route path="engine-health" element={<EngineHealthPage />} />
           <Route path="sensors" element={<SensorMonitoringPage />} />
           <Route path="tracking" element={<LocationTrackingPage />} />
+          <Route path="geospatial-tracking" element={<GeospatialTrackingPage />} />
           <Route path="mission-replay" element={<MissionReplayPage />} />
           <Route path="anomalies" element={<AnomalyDetectionPage />} />
           <Route path="predictions" element={<FaultPredictionPage />} />

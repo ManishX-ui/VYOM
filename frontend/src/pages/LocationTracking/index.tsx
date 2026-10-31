@@ -3,6 +3,7 @@ import L from 'leaflet';
 import { useApp } from '../../context/AppContext';
 import { DEMO_MISSIONS } from '../../data/demoData';
 import { LocationTrackingMap, MapLayerType, UAVTrackingPosition } from '../../components/tracking/LocationTrackingMap';
+import { CesiumGeospatialTracker } from '../../components/geospatial/CesiumGeospatialTracker';
 import {
   Navigation,
   Compass,
@@ -24,11 +25,13 @@ import {
   Trash2,
   AlertTriangle,
   RotateCcw,
+  Globe,
 } from 'lucide-react';
 
 export const LocationTrackingPage: React.FC = () => {
-  const { selectedUAV, telemetry, telemetryMode, backendConnectionStatus } = useApp();
+  const { selectedUAV, pairedUAVs, telemetry, telemetryMode, backendConnectionStatus, selectUAV } = useApp();
 
+  const [viewType, setViewType] = useState<'3D' | '2D'>('3D');
   const [followUAV, setFollowUAV] = useState(true);
   const [showFlightPath, setShowFlightPath] = useState(true);
   const [showWaypoints, setShowWaypoints] = useState(true);
@@ -129,6 +132,32 @@ export const LocationTrackingPage: React.FC = () => {
         </div>
 
         <div className="flex items-center gap-2">
+          {/* 3D vs 2D Switcher */}
+          <div className="flex items-center p-1 rounded-xl bg-slate-100 border border-slate-300">
+            <button
+              onClick={() => setViewType('3D')}
+              className={`flex items-center gap-1.5 px-3 py-1 rounded-lg text-xs font-mono font-bold transition-all ${
+                viewType === '3D'
+                  ? 'bg-blue-600 text-white shadow-sm'
+                  : 'text-slate-600 hover:text-slate-900'
+              }`}
+            >
+              <Globe className="w-3.5 h-3.5" />
+              <span>3D Geospatial</span>
+            </button>
+            <button
+              onClick={() => setViewType('2D')}
+              className={`flex items-center gap-1.5 px-3 py-1 rounded-lg text-xs font-mono font-bold transition-all ${
+                viewType === '2D'
+                  ? 'bg-blue-600 text-white shadow-sm'
+                  : 'text-slate-600 hover:text-slate-900'
+              }`}
+            >
+              <Navigation className="w-3.5 h-3.5" />
+              <span>2D Tactical Map</span>
+            </button>
+          </div>
+
           {/* Operating Mode Badge */}
           <span
             className={`font-mono text-xs px-2.5 py-1 rounded font-semibold border ${
@@ -165,7 +194,35 @@ export const LocationTrackingPage: React.FC = () => {
       {/* =========================================
           MAP WORKSPACE & TELEMETRY COCKPIT
           ========================================= */}
-      <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 items-stretch">
+      {viewType === '3D' ? (
+        <div className="w-full h-[760px] rounded-2xl border border-slate-800 shadow-2xl overflow-hidden relative">
+          <CesiumGeospatialTracker
+            uavId={selectedUAV.id}
+            uavName={selectedUAV.name}
+            mode={telemetryMode}
+            telemetry={telemetry}
+            waypoints={waypoints}
+            availableFleet={pairedUAVs.map((u, i) => ({
+              id: u.id,
+              name: u.name,
+              callsign: `UAV-${i + 1}`,
+              lat: (telemetry.latitude ?? 21.25) + (i - 1) * 0.04,
+              lng: (telemetry.longitude ?? 81.63) + (i - 1) * 0.03,
+              altFt: (telemetry.altitudeFt ?? 14500) + i * 500,
+              headingDeg: (telemetry.headingDeg ?? 139) + i * 20,
+              pitchDeg: telemetry.pitchDeg ?? 0,
+              rollDeg: telemetry.rollDeg ?? 0,
+              speedMs: telemetry.groundSpeedMs ?? 32,
+              flightMode: telemetry.flight_mode ?? 'QLOITER',
+              status: u.status === 'ONLINE' ? 'ACTIVE' : 'STANDBY',
+              color: i === 0 ? '#38bdf8' : '#a855f7',
+            }))}
+            onSelectUAV={selectUAV}
+            className="w-full h-full"
+          />
+        </div>
+      ) : (
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 items-stretch">
         {/* Left: Map Container (8 Cols) */}
         <div className="lg:col-span-8 bg-slate-950 rounded-2xl border border-slate-800 shadow-md relative overflow-hidden flex flex-col h-full min-h-[580px] select-none">
           {/* Top Floating Map Controls Toolbar */}
@@ -420,6 +477,7 @@ export const LocationTrackingPage: React.FC = () => {
           </div>
         </div>
       </div>
+      )}
     </div>
   );
 };

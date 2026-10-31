@@ -12,12 +12,15 @@ import L from 'leaflet';
 import 'leaflet/dist/leaflet.css';
 import { MissionRecord, ReplayTelemetryPoint, EngineTelemetry } from '../../types';
 import { DigitalTwin3D } from '../digital-twin/DigitalTwin3D';
+import { CesiumGeospatialTracker } from '../geospatial/CesiumGeospatialTracker';
 import {
   Play,
   Pause,
   RotateCcw,
   Square,
   Crosshair,
+  Globe,
+  Box,
 } from 'lucide-react';
 
 // Fix Leaflet default icon issues in bundlers
@@ -128,6 +131,7 @@ export const MissionReplayMap: React.FC<MissionReplayMapProps> = ({
   onToggleMapMode,
   className = '',
 }) => {
+  const [threeDViewType, setThreeDViewType] = useState<'terrain' | 'airframe'>('terrain');
   const [followAircraft, setFollowAircraft] = useState<boolean>(true);
   const timeline = mission.timeline || [];
   const waypoints = mission.waypoints || [];
@@ -646,16 +650,66 @@ export const MissionReplayMap: React.FC<MissionReplayMapProps> = ({
         </div>
       </div>
 
-      {/* 3D Digital Twin View */}
+      {/* 3D Digital Twin & Geospatial Replay View */}
       {mapMode === '3D View' && (
         <div className="absolute inset-0 z-[900] bg-slate-950 flex flex-col">
-          <DigitalTwin3D
-            telemetry={replayEngineTelemetry}
-            heightClass="h-full w-full"
-            showThermal={false}
-            showVibration={false}
-            showSurfaces={true}
-          />
+          {/* Sub-selector: Geospatial Terrain vs Airframe Twin */}
+          <div className="absolute top-4 left-36 z-[1000] flex items-center gap-1 p-1 rounded-lg bg-black/85 border border-slate-700/80 backdrop-blur-md shadow-lg text-xs pointer-events-auto">
+            <button
+              onClick={() => setThreeDViewType('terrain')}
+              className={`flex items-center gap-1 px-2.5 py-1 rounded font-medium transition-colors ${
+                threeDViewType === 'terrain'
+                  ? 'bg-blue-600 text-white shadow-2xs font-semibold'
+                  : 'text-slate-400 hover:text-white'
+              }`}
+            >
+              <Globe className="w-3 h-3" />
+              <span>3D Terrain (Cesium)</span>
+            </button>
+            <button
+              onClick={() => setThreeDViewType('airframe')}
+              className={`flex items-center gap-1 px-2.5 py-1 rounded font-medium transition-colors ${
+                threeDViewType === 'airframe'
+                  ? 'bg-blue-600 text-white shadow-2xs font-semibold'
+                  : 'text-slate-400 hover:text-white'
+              }`}
+            >
+              <Box className="w-3 h-3" />
+              <span>Airframe CAD</span>
+            </button>
+          </div>
+
+          {threeDViewType === 'terrain' ? (
+            <CesiumGeospatialTracker
+              uavId={mission.uavId || 'UAV-01'}
+              uavName={mission.name || 'RUSTOM-II'}
+              mode="REPLAY"
+              telemetry={replayEngineTelemetry}
+              playbackIndex={playbackIndex}
+              totalPoints={totalPoints}
+              isPlaying={isPlaying}
+              playbackSpeed={playbackSpeed}
+              onTogglePlay={onTogglePlay}
+              onStop={onStop}
+              onSeek={onSeek}
+              onChangeSpeed={onChangeSpeed}
+              waypoints={mission.waypoints}
+              flightTrail={
+                mission.timeline
+                  ?.slice(0, playbackIndex + 1)
+                  .map((p) => [p.lat, p.lng, (p.altitude || 14500) * 0.3048]) || []
+              }
+              className="w-full h-full"
+            />
+          ) : (
+            <DigitalTwin3D
+              telemetry={replayEngineTelemetry}
+              heightClass="h-full w-full"
+              showThermal={false}
+              showVibration={false}
+              showSurfaces={true}
+            />
+          )}
         </div>
       )}
     </div>

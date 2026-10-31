@@ -36,6 +36,8 @@ export interface EngineTelemetry {
   // Multi-mode & Centralized Telemetry Extensions
   uav_id?: string;
   mode?: 'DEMO' | 'REPLAY' | 'LIVE';
+  flight_mode?: string;
+  operating_mode?: string;
   is_simulated?: boolean;
   latitude?: number;
   longitude?: number;
