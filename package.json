@@ -4,6 +4,8 @@
   "private": true,
   "description": "VYOM — Virtual Yield & Operational Monitoring (MALE UAV Aero Piston Engine Digital Twin)",
   "scripts": {
+    "build": "cd frontend && npm install && npm run build",
+    "dev": "cd frontend && npm run dev",
     "dev:frontend": "cd frontend && npm run dev",
     "dev:backend": "cd backend && uvicorn app.main:app --host 0.0.0.0 --port 8000 --reload",
     "build:frontend": "cd frontend && npm run build",
