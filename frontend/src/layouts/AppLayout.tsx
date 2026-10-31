@@ -50,12 +50,10 @@ export const AppLayout: React.FC = () => {
     { to: '/app/engine-health', label: 'Engine Health', icon: Cpu },
     { to: '/app/sensors', label: 'Sensor Monitoring', icon: Gauge },
     { to: '/app/tracking', label: 'Location Tracking', icon: Navigation },
-    { to: '/app/geospatial-tracking', label: '3D Geospatial Tracking', icon: Globe },
     { to: '/app/mission-replay', label: 'Mission Replay', icon: PlayCircle },
     { to: '/app/anomalies', label: 'Anomaly Detection', icon: AlertTriangle, badge: '2' },
     { to: '/app/predictions', label: 'Fault Prediction', icon: TrendingUp },
     { to: '/app/alerts', label: 'Alert History', icon: Bell, count: activeAlertsCount },
-    { to: '/app/datalink', label: 'GCS Datalink', icon: Radio },
   ];
 
   return (
