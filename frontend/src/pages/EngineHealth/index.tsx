@@ -42,7 +42,26 @@ export const EngineHealthPage: React.FC = () => {
     'rpm' | 'cht' | 'egt' | 'oilPress' | 'oilTemp' | 'fuel' | 'vib' | 'injection' | 'health'
   >('cht');
   const [timeHorizon, setTimeHorizon] = useState<'1m' | '5m' | '15m' | '1h' | '6h' | '24h'>('1h');
-  const [historyData, setHistoryData] = useState<any[]>([]);
+  const [historyData, setHistoryData] = useState<any[]>(() => {
+    return Array.from({ length: 15 }, (_, i) => {
+      const secOffset = (15 - i) * 4;
+      const date = new Date(Date.now() - secOffset * 1000);
+      const timeStr = date.toLocaleTimeString('en-GB', { hour12: false });
+      return {
+        time: timeStr,
+        timestamp: timeStr,
+        rpm: 2450 + Math.round(Math.sin(i * 0.8) * 15),
+        cht: 187 + Number((Math.cos(i * 0.5) * 1.5).toFixed(1)),
+        egt: 620 + Number((Math.sin(i * 0.7) * 4.0).toFixed(1)),
+        oilPress: 4.2 + Number((Math.cos(i) * 0.05).toFixed(2)),
+        oilTemp: 96.0 + Number((Math.sin(i * 0.4) * 0.8).toFixed(1)),
+        fuel: 12.5 + Number((Math.sin(i * 0.6) * 0.3).toFixed(1)),
+        vib: 0.28 + Number((Math.abs(Math.sin(i)) * 0.02).toFixed(2)),
+        injection: 26.5,
+        health: 95.0,
+      };
+    });
+  });
   const [isLoadingHistory, setIsLoadingHistory] = useState<boolean>(false);
 
   // Fetch real downsampled historical telemetry for selected time range

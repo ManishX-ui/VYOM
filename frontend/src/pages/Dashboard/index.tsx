@@ -175,182 +175,199 @@ export const DashboardPage: React.FC = () => {
 
       {/* =========================================
           B. 8 ENGINE PARAMETERS KPI CARDS
+          Standard Aerospace Boxes • Clean Light Theme
           Strictly RPM, CHT, EGT, Oil Pressure, Oil Temp, Fuel Flow, Vibration, Injection Timing
           ========================================= */}
       <div className="grid grid-cols-2 md:grid-cols-4 xl:grid-cols-8 gap-3 items-stretch">
         {/* 1. Engine RPM */}
-        <div className="p-3.5 rounded-xl bg-white border border-slate-200 shadow-2xs flex flex-col justify-between h-full space-y-2">
+        <div className="p-3.5 rounded-xl bg-white border border-slate-200/90 hover:border-slate-300 hover:shadow-sm shadow-2xs flex flex-col justify-between h-full transition-all group">
           <div className="flex items-center justify-between">
-            <span className="text-[11px] font-medium text-slate-500">RPM</span>
-            <Gauge className="w-4 h-4 text-blue-600" />
-          </div>
-          <div className="flex items-baseline gap-1">
-            <span className="text-xl font-bold font-mono tracking-tight text-slate-900">
-              {telemetry.rpm}
-            </span>
-            <span className="text-[10px] font-mono text-slate-400">RPM</span>
-          </div>
-          <div className="flex items-center justify-between pt-1 border-t border-slate-100 text-[10px] font-mono">
-            <span className="text-emerald-600 font-semibold">↑ +2.1%</span>
-            <div className="w-10 h-3.5">
-              <svg className="w-full h-full text-blue-500" viewBox="0 0 40 16">
-                <path d="M 0 12 Q 10 4 20 8 T 40 2" fill="none" stroke="currentColor" strokeWidth="2" />
-              </svg>
+            <span className="text-[11px] font-semibold text-slate-500 uppercase tracking-wider">RPM</span>
+            <div className="w-6 h-6 rounded-lg bg-slate-50 border border-slate-100 flex items-center justify-center text-slate-500 group-hover:text-blue-600 transition-colors">
+              <Gauge className="w-3.5 h-3.5" />
             </div>
+          </div>
+          <div className="my-1.5">
+            <div className="flex items-baseline gap-1">
+              <span className="text-2xl font-bold font-mono tracking-tight text-slate-900">
+                {telemetry.rpm}
+              </span>
+              <span className="text-[11px] font-mono text-slate-400 font-medium">RPM</span>
+            </div>
+          </div>
+          <div className="flex items-center justify-between pt-2 border-t border-slate-100 text-[10px] font-mono">
+            <span className="text-emerald-600 font-semibold flex items-center gap-0.5">
+              <span>↑</span> +2.1%
+            </span>
+            <span className="text-slate-400 font-medium">2.2-2.8k</span>
           </div>
         </div>
 
         {/* 2. Cylinder Head Temp (CHT) */}
-        <div className="p-3.5 rounded-xl bg-amber-50/50 border border-amber-200 shadow-2xs flex flex-col justify-between h-full space-y-2 relative overflow-hidden">
+        <div className="p-3.5 rounded-xl bg-white border border-slate-200/90 hover:border-slate-300 hover:shadow-sm shadow-2xs flex flex-col justify-between h-full transition-all group">
           <div className="flex items-center justify-between">
-            <span className="text-[11px] font-medium text-amber-800">CHT</span>
-            <Thermometer className="w-4 h-4 text-amber-600" />
-          </div>
-          <div className="flex items-baseline gap-1">
-            <span className="text-xl font-bold font-mono tracking-tight text-amber-900">
-              {telemetry.cht}
-            </span>
-            <span className="text-[10px] font-mono text-slate-400">°C</span>
-          </div>
-          <div className="flex items-center justify-between pt-1 border-t border-amber-100 text-[10px] font-mono">
-            <span className="text-amber-700 font-semibold">↓ -1.3%</span>
-            <div className="w-10 h-3.5">
-              <svg className="w-full h-full text-amber-500" viewBox="0 0 40 16">
-                <path d="M 0 14 Q 10 10 20 6 T 40 4" fill="none" stroke="currentColor" strokeWidth="2" />
-              </svg>
+            <span className="text-[11px] font-semibold text-slate-500 uppercase tracking-wider">CHT</span>
+            <div className="w-6 h-6 rounded-lg bg-slate-50 border border-slate-100 flex items-center justify-center text-slate-500 group-hover:text-amber-600 transition-colors">
+              <Thermometer className="w-3.5 h-3.5" />
             </div>
+          </div>
+          <div className="my-1.5">
+            <div className="flex items-baseline gap-1">
+              <span className="text-2xl font-bold font-mono tracking-tight text-slate-900">
+                {telemetry.cht}
+              </span>
+              <span className="text-[11px] font-mono text-slate-400 font-medium">°C</span>
+            </div>
+          </div>
+          <div className="flex items-center justify-between pt-2 border-t border-slate-100 text-[10px] font-mono">
+            <span className="text-amber-600 font-semibold flex items-center gap-0.5">
+              <span>↓</span> -1.3%
+            </span>
+            <span className="text-slate-400 font-medium">Max 180°</span>
           </div>
         </div>
 
         {/* 3. Exhaust Gas Temp (EGT) */}
-        <div className="p-3.5 rounded-xl bg-white border border-slate-200 shadow-2xs flex flex-col justify-between h-full space-y-2">
+        <div className="p-3.5 rounded-xl bg-white border border-slate-200/90 hover:border-slate-300 hover:shadow-sm shadow-2xs flex flex-col justify-between h-full transition-all group">
           <div className="flex items-center justify-between">
-            <span className="text-[11px] font-medium text-slate-500">EGT</span>
-            <Flame className="w-4 h-4 text-orange-500" />
-          </div>
-          <div className="flex items-baseline gap-1">
-            <span className="text-xl font-bold font-mono tracking-tight text-slate-900">
-              {telemetry.egt}
-            </span>
-            <span className="text-[10px] font-mono text-slate-400">°C</span>
-          </div>
-          <div className="flex items-center justify-between pt-1 border-t border-slate-100 text-[10px] font-mono">
-            <span className="text-emerald-600 font-semibold">↑ +1.1%</span>
-            <div className="w-10 h-3.5">
-              <svg className="w-full h-full text-orange-500" viewBox="0 0 40 16">
-                <path d="M 0 12 Q 10 6 20 8 T 40 4" fill="none" stroke="currentColor" strokeWidth="2" />
-              </svg>
+            <span className="text-[11px] font-semibold text-slate-500 uppercase tracking-wider">EGT</span>
+            <div className="w-6 h-6 rounded-lg bg-slate-50 border border-slate-100 flex items-center justify-center text-slate-500 group-hover:text-orange-600 transition-colors">
+              <Flame className="w-3.5 h-3.5" />
             </div>
+          </div>
+          <div className="my-1.5">
+            <div className="flex items-baseline gap-1">
+              <span className="text-2xl font-bold font-mono tracking-tight text-slate-900">
+                {telemetry.egt}
+              </span>
+              <span className="text-[11px] font-mono text-slate-400 font-medium">°C</span>
+            </div>
+          </div>
+          <div className="flex items-center justify-between pt-2 border-t border-slate-100 text-[10px] font-mono">
+            <span className="text-emerald-600 font-semibold flex items-center gap-0.5">
+              <span>↑</span> +1.1%
+            </span>
+            <span className="text-slate-400 font-medium">550-650°</span>
           </div>
         </div>
 
         {/* 4. Oil Pressure */}
-        <div className="p-3.5 rounded-xl bg-white border border-slate-200 shadow-2xs flex flex-col justify-between h-full space-y-2">
+        <div className="p-3.5 rounded-xl bg-white border border-slate-200/90 hover:border-slate-300 hover:shadow-sm shadow-2xs flex flex-col justify-between h-full transition-all group">
           <div className="flex items-center justify-between">
-            <span className="text-[11px] font-medium text-slate-500">Oil Pressure</span>
-            <Droplet className="w-4 h-4 text-blue-600" />
-          </div>
-          <div className="flex items-baseline gap-1">
-            <span className="text-xl font-bold font-mono tracking-tight text-slate-900">
-              {telemetry.oilPressure}
-            </span>
-            <span className="text-[10px] font-mono text-slate-400">bar</span>
-          </div>
-          <div className="flex items-center justify-between pt-1 border-t border-slate-100 text-[10px] font-mono">
-            <span className="text-emerald-600 font-semibold">↑ +0.5%</span>
-            <div className="w-10 h-3.5">
-              <svg className="w-full h-full text-blue-500" viewBox="0 0 40 16">
-                <path d="M 0 10 Q 15 14 25 8 T 40 4" fill="none" stroke="currentColor" strokeWidth="2" />
-              </svg>
+            <span className="text-[11px] font-semibold text-slate-500 uppercase tracking-wider">Oil Pressure</span>
+            <div className="w-6 h-6 rounded-lg bg-slate-50 border border-slate-100 flex items-center justify-center text-slate-500 group-hover:text-blue-600 transition-colors">
+              <Droplet className="w-3.5 h-3.5" />
             </div>
+          </div>
+          <div className="my-1.5">
+            <div className="flex items-baseline gap-1">
+              <span className="text-2xl font-bold font-mono tracking-tight text-slate-900">
+                {telemetry.oilPressure}
+              </span>
+              <span className="text-[11px] font-mono text-slate-400 font-medium">bar</span>
+            </div>
+          </div>
+          <div className="flex items-center justify-between pt-2 border-t border-slate-100 text-[10px] font-mono">
+            <span className="text-emerald-600 font-semibold flex items-center gap-0.5">
+              <span>↑</span> +0.5%
+            </span>
+            <span className="text-slate-400 font-medium">3.0-5.0</span>
           </div>
         </div>
 
         {/* 5. Oil Temperature */}
-        <div className="p-3.5 rounded-xl bg-white border border-slate-200 shadow-2xs flex flex-col justify-between h-full space-y-2">
+        <div className="p-3.5 rounded-xl bg-white border border-slate-200/90 hover:border-slate-300 hover:shadow-sm shadow-2xs flex flex-col justify-between h-full transition-all group">
           <div className="flex items-center justify-between">
-            <span className="text-[11px] font-medium text-slate-500">Oil Temp</span>
-            <Thermometer className="w-4 h-4 text-cyan-600" />
-          </div>
-          <div className="flex items-baseline gap-1">
-            <span className="text-xl font-bold font-mono tracking-tight text-slate-900">
-              {telemetry.oilTemperature}
-            </span>
-            <span className="text-[10px] font-mono text-slate-400">°C</span>
-          </div>
-          <div className="flex items-center justify-between pt-1 border-t border-slate-100 text-[10px] font-mono">
-            <span className="text-emerald-600 font-semibold">↑ +0.6%</span>
-            <div className="w-10 h-3.5">
-              <svg className="w-full h-full text-cyan-500" viewBox="0 0 40 16">
-                <path d="M 0 11 Q 12 13 24 7 T 40 5" fill="none" stroke="currentColor" strokeWidth="2" />
-              </svg>
+            <span className="text-[11px] font-semibold text-slate-500 uppercase tracking-wider">Oil Temp</span>
+            <div className="w-6 h-6 rounded-lg bg-slate-50 border border-slate-100 flex items-center justify-center text-slate-500 group-hover:text-cyan-600 transition-colors">
+              <Thermometer className="w-3.5 h-3.5" />
             </div>
+          </div>
+          <div className="my-1.5">
+            <div className="flex items-baseline gap-1">
+              <span className="text-2xl font-bold font-mono tracking-tight text-slate-900">
+                {telemetry.oilTemperature}
+              </span>
+              <span className="text-[11px] font-mono text-slate-400 font-medium">°C</span>
+            </div>
+          </div>
+          <div className="flex items-center justify-between pt-2 border-t border-slate-100 text-[10px] font-mono">
+            <span className="text-emerald-600 font-semibold flex items-center gap-0.5">
+              <span>↑</span> +0.6%
+            </span>
+            <span className="text-slate-400 font-medium">80-110°</span>
           </div>
         </div>
 
         {/* 6. Fuel Flow */}
-        <div className="p-3.5 rounded-xl bg-white border border-slate-200 shadow-2xs flex flex-col justify-between h-full space-y-2">
+        <div className="p-3.5 rounded-xl bg-white border border-slate-200/90 hover:border-slate-300 hover:shadow-sm shadow-2xs flex flex-col justify-between h-full transition-all group">
           <div className="flex items-center justify-between">
-            <span className="text-[11px] font-medium text-slate-500">Fuel Flow</span>
-            <Fuel className="w-4 h-4 text-blue-600" />
-          </div>
-          <div className="flex items-baseline gap-1">
-            <span className="text-xl font-bold font-mono tracking-tight text-slate-900">
-              {telemetry.fuelFlow}
-            </span>
-            <span className="text-[10px] font-mono text-slate-400">L/hr</span>
-          </div>
-          <div className="flex items-center justify-between pt-1 border-t border-slate-100 text-[10px] font-mono">
-            <span className="text-emerald-600 font-semibold">↑ +3.2%</span>
-            <div className="w-10 h-3.5">
-              <svg className="w-full h-full text-blue-500" viewBox="0 0 40 16">
-                <path d="M 0 12 Q 12 14 24 6 T 40 2" fill="none" stroke="currentColor" strokeWidth="2" />
-              </svg>
+            <span className="text-[11px] font-semibold text-slate-500 uppercase tracking-wider">Fuel Flow</span>
+            <div className="w-6 h-6 rounded-lg bg-slate-50 border border-slate-100 flex items-center justify-center text-slate-500 group-hover:text-blue-600 transition-colors">
+              <Fuel className="w-3.5 h-3.5" />
             </div>
+          </div>
+          <div className="my-1.5">
+            <div className="flex items-baseline gap-1">
+              <span className="text-2xl font-bold font-mono tracking-tight text-slate-900">
+                {telemetry.fuelFlow}
+              </span>
+              <span className="text-[11px] font-mono text-slate-400 font-medium">L/hr</span>
+            </div>
+          </div>
+          <div className="flex items-center justify-between pt-2 border-t border-slate-100 text-[10px] font-mono">
+            <span className="text-emerald-600 font-semibold flex items-center gap-0.5">
+              <span>↑</span> +3.2%
+            </span>
+            <span className="text-slate-400 font-medium">Nominal</span>
           </div>
         </div>
 
         {/* 7. Vibration RMS */}
-        <div className="p-3.5 rounded-xl bg-amber-50/50 border border-amber-200 shadow-2xs flex flex-col justify-between h-full space-y-2">
+        <div className="p-3.5 rounded-xl bg-white border border-slate-200/90 hover:border-slate-300 hover:shadow-sm shadow-2xs flex flex-col justify-between h-full transition-all group">
           <div className="flex items-center justify-between">
-            <span className="text-[11px] font-medium text-amber-800">Vibration</span>
-            <Activity className="w-4 h-4 text-amber-600" />
-          </div>
-          <div className="flex items-baseline gap-1">
-            <span className="text-xl font-bold font-mono tracking-tight text-amber-900">
-              {telemetry.vibrationRMS}
-            </span>
-            <span className="text-[10px] font-mono text-slate-400">g</span>
-          </div>
-          <div className="flex items-center justify-between pt-1 border-t border-amber-100 text-[10px] font-mono">
-            <span className="text-emerald-600 font-semibold">↓ -5.4%</span>
-            <div className="w-10 h-3.5">
-              <svg className="w-full h-full text-amber-500" viewBox="0 0 40 16">
-                <path d="M 0 6 Q 10 14 20 4 T 40 12" fill="none" stroke="currentColor" strokeWidth="2" />
-              </svg>
+            <span className="text-[11px] font-semibold text-slate-500 uppercase tracking-wider">Vibration</span>
+            <div className="w-6 h-6 rounded-lg bg-slate-50 border border-slate-100 flex items-center justify-center text-slate-500 group-hover:text-amber-600 transition-colors">
+              <Activity className="w-3.5 h-3.5" />
             </div>
+          </div>
+          <div className="my-1.5">
+            <div className="flex items-baseline gap-1">
+              <span className="text-2xl font-bold font-mono tracking-tight text-slate-900">
+                {telemetry.vibrationRMS}
+              </span>
+              <span className="text-[11px] font-mono text-slate-400 font-medium">g</span>
+            </div>
+          </div>
+          <div className="flex items-center justify-between pt-2 border-t border-slate-100 text-[10px] font-mono">
+            <span className="text-emerald-600 font-semibold flex items-center gap-0.5">
+              <span>↓</span> -5.4%
+            </span>
+            <span className="text-slate-400 font-medium">&lt; 0.25 g</span>
           </div>
         </div>
 
         {/* 8. Injection Timing */}
-        <div className="p-3.5 rounded-xl bg-white border border-slate-200 shadow-2xs flex flex-col justify-between h-full space-y-2">
+        <div className="p-3.5 rounded-xl bg-white border border-slate-200/90 hover:border-slate-300 hover:shadow-sm shadow-2xs flex flex-col justify-between h-full transition-all group">
           <div className="flex items-center justify-between">
-            <span className="text-[11px] font-medium text-slate-500">Injection Timing</span>
-            <Timer className="w-4 h-4 text-purple-600" />
-          </div>
-          <div className="flex items-baseline gap-1">
-            <span className="text-xl font-bold font-mono tracking-tight text-slate-900">
-              {telemetry.injectionTiming}
-            </span>
-            <span className="text-[10px] font-mono text-slate-400">° BTDC</span>
-          </div>
-          <div className="flex items-center justify-between pt-1 border-t border-slate-100 text-[10px] font-mono">
-            <span className="text-emerald-600 font-semibold">0.0% Nominal</span>
-            <div className="w-10 h-3.5">
-              <svg className="w-full h-full text-purple-500" viewBox="0 0 40 16">
-                <path d="M 0 8 L 10 8 L 20 4 L 30 8 L 40 8" fill="none" stroke="currentColor" strokeWidth="2" />
-              </svg>
+            <span className="text-[11px] font-semibold text-slate-500 uppercase tracking-wider">Injection</span>
+            <div className="w-6 h-6 rounded-lg bg-slate-50 border border-slate-100 flex items-center justify-center text-slate-500 group-hover:text-purple-600 transition-colors">
+              <Timer className="w-3.5 h-3.5" />
             </div>
+          </div>
+          <div className="my-1.5">
+            <div className="flex items-baseline gap-1">
+              <span className="text-2xl font-bold font-mono tracking-tight text-slate-900">
+                {telemetry.injectionTiming}
+              </span>
+              <span className="text-[11px] font-mono text-slate-400 font-medium">°BTDC</span>
+            </div>
+          </div>
+          <div className="flex items-center justify-between pt-2 border-t border-slate-100 text-[10px] font-mono">
+            <span className="text-emerald-600 font-semibold flex items-center gap-0.5">
+              <span>●</span> Nominal
+            </span>
+            <span className="text-slate-400 font-medium">26.0° Base</span>
           </div>
         </div>
       </div>

@@ -68,11 +68,13 @@ export const AdminLoginPage: React.FC = () => {
           TOP BAR: BRAND, CENTER NAVIGATION & ADMIN LOGIN
           ========================================= */}
       <div className="relative z-30 w-full px-6 sm:px-10 lg:px-14 py-6 flex items-center justify-between pointer-events-none">
-        {/* Left: Simple Clean Brand (No fancy logo) */}
+        {/* Left: Official VYOM Logo */}
         <div className="flex items-center gap-2.5 pointer-events-auto">
-          <div className="w-8 h-8 rounded-lg bg-blue-600/90 text-white flex items-center justify-center shadow-md">
-            <Plane className="w-4 h-4 -rotate-45" />
-          </div>
+          <img
+            src="/vyom-logo.png"
+            alt="VYOM Logo"
+            className="w-8 h-8 rounded-lg object-contain shadow-sm bg-white/10 p-0.5"
+          />
           <span className="font-extrabold text-xl tracking-wider text-white">
             VYOM
           </span>
@@ -153,8 +155,8 @@ export const AdminLoginPage: React.FC = () => {
             {/* Modal Header */}
             <div className="flex items-center justify-between pb-4 border-b border-slate-100">
               <div className="flex items-center gap-3">
-                <div className="w-10 h-10 rounded-full bg-slate-100 border border-slate-200 flex items-center justify-center text-slate-800 shadow-xs">
-                  <Plane className="w-5 h-5 -rotate-45 text-blue-600" />
+                <div className="w-10 h-10 rounded-full bg-slate-50 border border-slate-200 flex items-center justify-center p-1.5 shadow-xs">
+                  <img src="/vyom-logo.png" alt="VYOM" className="w-full h-full object-contain" />
                 </div>
                 <div>
                   <h3 className="font-serif font-bold text-xl text-slate-900">About VYOM Platform</h3>
@@ -249,8 +251,8 @@ export const AdminLoginPage: React.FC = () => {
             {/* Modal Header */}
             <div className="flex items-center justify-between pb-4 border-b border-slate-100">
               <div className="flex items-center gap-3">
-                <div className="w-10 h-10 rounded-full bg-slate-100 border border-slate-200 flex items-center justify-center text-slate-800 shadow-xs">
-                  <Plane className="w-5 h-5 -rotate-45 text-blue-600" />
+                <div className="w-10 h-10 rounded-full bg-slate-50 border border-slate-200 flex items-center justify-center p-1.5 shadow-xs">
+                  <img src="/vyom-logo.png" alt="VYOM" className="w-full h-full object-contain" />
                 </div>
                 <div>
                   <h3 className="font-serif font-bold text-xl text-slate-900">Platform Features</h3>

@@ -15,6 +15,8 @@ import {
   Plane,
   ShieldCheck,
   CheckCircle2,
+  ZoomIn,
+  ZoomOut,
 } from 'lucide-react';
 
 interface DigitalTwin3DProps {
@@ -96,8 +98,9 @@ export const DigitalTwin3D: React.FC<DigitalTwin3DProps> = ({
     container.appendChild(renderer.domElement);
     rendererRef.current = renderer;
 
-    // Scene
+    // Scene with Crisp Aerospace Studio Light Theme
     const scene = new THREE.Scene();
+    scene.background = new THREE.Color(0xf8fafc);
     sceneRef.current = scene;
 
     // Camera
@@ -111,20 +114,34 @@ export const DigitalTwin3D: React.FC<DigitalTwin3DProps> = ({
     scene.environment = pmrem.fromScene(new RoomEnvironment(), 0.04).texture;
     pmrem.dispose();
 
-    // Studio 3-Point Aerospace Lighting
-    const keyLight = new THREE.DirectionalLight(0xffffff, 3.0);
+    // Studio 3-Point Aerospace Lighting tuned for light background
+    const keyLight = new THREE.DirectionalLight(0xffffff, 2.4);
     keyLight.position.set(6, 8, 5);
     keyLight.castShadow = true;
     keyLight.shadow.mapSize.width = 1024;
     keyLight.shadow.mapSize.height = 1024;
+    keyLight.shadow.bias = -0.0005;
     scene.add(keyLight);
 
-    const hemiLight = new THREE.HemisphereLight(0xe0f2fe, 0x0f172a, 1.2);
+    const hemiLight = new THREE.HemisphereLight(0xffffff, 0xcfd8dc, 1.4);
     scene.add(hemiLight);
 
-    const rimLight = new THREE.DirectionalLight(0x38bdf8, 2.5);
+    const rimLight = new THREE.DirectionalLight(0x93c5fd, 1.2);
     rimLight.position.set(-6, 3, -6);
     scene.add(rimLight);
+
+    // Subtle Ground Reference Grid & Soft Ground Shadow
+    const gridHelper = new THREE.GridHelper(16, 16, 0xcbd5e1, 0xe2e8f0);
+    gridHelper.position.y = -1.2;
+    scene.add(gridHelper);
+
+    const shadowPlaneGeo = new THREE.PlaneGeometry(24, 24);
+    const shadowPlaneMat = new THREE.ShadowMaterial({ opacity: 0.14 });
+    const shadowPlane = new THREE.Mesh(shadowPlaneGeo, shadowPlaneMat);
+    shadowPlane.rotation.x = -Math.PI / 2;
+    shadowPlane.position.y = -1.205;
+    shadowPlane.receiveShadow = true;
+    scene.add(shadowPlane);
 
     // ==========================================
     // PROCEDURAL 3D MALE UAV AIRFRAME (RUSTOM-II / TAPAS CLASS)
@@ -619,31 +636,63 @@ export const DigitalTwin3D: React.FC<DigitalTwin3DProps> = ({
     cameraRef.current.lookAt(0, 0, 0);
   };
 
+  // Zoom In / Zoom Out Controls
+  const handleZoom = (direction: 'in' | 'out') => {
+    if (!cameraRef.current) return;
+    const factor = direction === 'in' ? 0.82 : 1.22;
+    cameraRef.current.position.multiplyScalar(factor);
+    const dist = cameraRef.current.position.length();
+    if (dist < 2.5) cameraRef.current.position.setLength(2.5);
+    if (dist > 22.0) cameraRef.current.position.setLength(22.0);
+  };
+
   const propRpm = telemetry?.rpm ? Math.round(telemetry.rpm / 2.43) : 1008;
 
   return (
-    <div className={`relative w-full ${heightClass} bg-slate-950 rounded-2xl overflow-hidden border border-slate-800 shadow-xl select-none`}>
+    <div className={`relative w-full ${heightClass} bg-slate-100 rounded-2xl overflow-hidden border border-slate-200/90 shadow-sm select-none`}>
       {/* Three.js Canvas Container */}
       <div ref={mountRef} className="w-full h-full cursor-grab active:cursor-grabbing" />
 
-      {/* Top Left: 3D Camera Controls */}
-      <div className="absolute top-4 left-4 flex items-center gap-1.5 p-1 bg-slate-900/80 backdrop-blur-md rounded-xl border border-slate-800 text-[11px] font-mono text-slate-300 shadow-md">
+      {/* Top Left: 3D Camera & Zoom Controls */}
+      <div className="absolute top-4 left-4 flex items-center gap-1.5 p-1.5 bg-white/90 backdrop-blur-md rounded-xl border border-slate-200/90 text-[11px] font-mono text-slate-700 shadow-sm">
         {(['ISO', 'FRONT', 'REAR', 'TOP', 'SIDE'] as const).map((view) => (
           <button
             key={view}
             onClick={() => setCameraView(view)}
-            className={`px-2.5 py-1 rounded-lg transition-colors ${
+            className={`px-2.5 py-1 rounded-lg transition-colors cursor-pointer ${
               activeCameraView === view
                 ? 'bg-blue-600 text-white font-bold shadow-xs'
-                : 'hover:bg-slate-800 text-slate-400 hover:text-white'
+                : 'hover:bg-slate-100 text-slate-600 hover:text-slate-900'
             }`}
           >
             {view}
           </button>
         ))}
+
+        <div className="h-4 w-px bg-slate-200 mx-0.5" />
+
+        {/* Zoom In Button */}
+        <button
+          onClick={() => handleZoom('in')}
+          className="p-1 rounded-lg text-slate-600 hover:text-blue-600 hover:bg-slate-100 transition-colors cursor-pointer"
+          title="Zoom In (+)"
+        >
+          <ZoomIn className="w-3.5 h-3.5" />
+        </button>
+
+        {/* Zoom Out Button */}
+        <button
+          onClick={() => handleZoom('out')}
+          className="p-1 rounded-lg text-slate-600 hover:text-blue-600 hover:bg-slate-100 transition-colors cursor-pointer"
+          title="Zoom Out (-)"
+        >
+          <ZoomOut className="w-3.5 h-3.5" />
+        </button>
+
+        {/* Reset Camera */}
         <button
           onClick={() => setCameraView('ISO')}
-          className="p-1 text-slate-400 hover:text-white ml-1 border-l border-slate-800 pl-2"
+          className="p-1 rounded-lg text-slate-600 hover:text-slate-900 hover:bg-slate-100 transition-colors cursor-pointer"
           title="Reset Camera"
         >
           <RotateCcw className="w-3.5 h-3.5" />
@@ -651,38 +700,38 @@ export const DigitalTwin3D: React.FC<DigitalTwin3DProps> = ({
       </div>
 
       {/* Top Right: Live Propulsion & Kinematics Overlay */}
-      <div className="absolute top-4 right-4 flex flex-col items-end gap-1.5 text-right font-mono text-xs text-slate-300">
-        <div className="px-3 py-1.5 bg-slate-900/80 backdrop-blur-md rounded-xl border border-slate-800 shadow-md flex items-center gap-2">
+      <div className="absolute top-4 right-4 flex flex-col items-end gap-1.5 text-right font-mono text-xs">
+        <div className="px-3 py-1.5 bg-white/90 backdrop-blur-md rounded-xl border border-slate-200/90 shadow-sm flex items-center gap-2 text-slate-700">
           <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
-          <span className="text-slate-400">ENGINE:</span>
-          <span className="font-bold text-white">{telemetry?.rpm ?? 2450} RPM</span>
-          <span className="text-slate-500">|</span>
-          <span className="text-slate-400">PROP:</span>
-          <span className="font-bold text-blue-400">{propRpm} RPM</span>
+          <span className="text-slate-500 font-semibold">ENGINE:</span>
+          <span className="font-bold text-slate-900">{telemetry?.rpm ?? 2450} RPM</span>
+          <span className="text-slate-300">|</span>
+          <span className="text-slate-500 font-semibold">PROP:</span>
+          <span className="font-bold text-blue-600">{propRpm} RPM</span>
         </div>
       </div>
 
       {/* Bottom Left: Spatial Attitude HUD */}
-      <div className="absolute bottom-4 left-4 p-3 bg-slate-900/80 backdrop-blur-md rounded-xl border border-slate-800 text-xs font-mono text-slate-300 space-y-1 shadow-md">
+      <div className="absolute bottom-4 left-4 p-2.5 bg-white/90 backdrop-blur-md rounded-xl border border-slate-200/90 text-xs font-mono shadow-sm">
         <div className="flex items-center gap-3">
           <div>
-            <span className="text-slate-500 block text-[10px]">ROLL</span>
-            <span className="font-bold text-white">{telemetry?.rollDeg?.toFixed(1) ?? '0.0'}°</span>
+            <span className="text-slate-400 block text-[10px] font-semibold">ROLL</span>
+            <span className="font-bold text-slate-900">{telemetry?.rollDeg?.toFixed(1) ?? '0.0'}°</span>
           </div>
-          <div className="border-l border-slate-800 pl-3">
-            <span className="text-slate-500 block text-[10px]">PITCH</span>
-            <span className="font-bold text-white">{telemetry?.pitchDeg?.toFixed(1) ?? '0.0'}°</span>
+          <div className="border-l border-slate-200 pl-3">
+            <span className="text-slate-400 block text-[10px] font-semibold">PITCH</span>
+            <span className="font-bold text-slate-900">{telemetry?.pitchDeg?.toFixed(1) ?? '0.0'}°</span>
           </div>
-          <div className="border-l border-slate-800 pl-3">
-            <span className="text-slate-500 block text-[10px]">HEADING</span>
-            <span className="font-bold text-cyan-400">{telemetry?.headingDeg ?? 180}°</span>
+          <div className="border-l border-slate-200 pl-3">
+            <span className="text-slate-400 block text-[10px] font-semibold">HEADING</span>
+            <span className="font-bold text-blue-600">{telemetry?.headingDeg ?? 180}°</span>
           </div>
         </div>
       </div>
 
       {/* Bottom Right: Interactive Model Hints */}
-      <div className="absolute bottom-4 right-4 text-[10px] font-mono text-slate-500 bg-slate-900/60 px-2.5 py-1 rounded-lg border border-slate-800/80">
-        Click components to inspect diagnostics · Drag to rotate · Scroll to zoom
+      <div className="absolute bottom-4 right-4 text-[10px] font-mono text-slate-500 bg-white/80 backdrop-blur-xs px-2.5 py-1 rounded-lg border border-slate-200/80 shadow-xs">
+        Click components to inspect diagnostics · Drag to rotate · Scroll or +/- to zoom
       </div>
     </div>
   );

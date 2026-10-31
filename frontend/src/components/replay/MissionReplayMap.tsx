@@ -652,15 +652,15 @@ export const MissionReplayMap: React.FC<MissionReplayMapProps> = ({
 
       {/* 3D Digital Twin & Geospatial Replay View */}
       {mapMode === '3D View' && (
-        <div className="absolute inset-0 z-[900] bg-slate-950 flex flex-col">
+        <div className="absolute inset-0 z-[900] bg-slate-100 flex flex-col">
           {/* Sub-selector: Geospatial Terrain vs Airframe Twin */}
-          <div className="absolute top-4 left-36 z-[1000] flex items-center gap-1 p-1 rounded-lg bg-black/85 border border-slate-700/80 backdrop-blur-md shadow-lg text-xs pointer-events-auto">
+          <div className="absolute top-4 left-36 z-[1000] flex items-center gap-1 p-1 rounded-lg bg-white/90 border border-slate-200/90 backdrop-blur-md shadow-sm text-xs pointer-events-auto">
             <button
               onClick={() => setThreeDViewType('terrain')}
               className={`flex items-center gap-1 px-2.5 py-1 rounded font-medium transition-colors ${
                 threeDViewType === 'terrain'
                   ? 'bg-blue-600 text-white shadow-2xs font-semibold'
-                  : 'text-slate-400 hover:text-white'
+                  : 'text-slate-600 hover:text-slate-900'
               }`}
             >
               <Globe className="w-3 h-3" />
@@ -671,7 +671,7 @@ export const MissionReplayMap: React.FC<MissionReplayMapProps> = ({
               className={`flex items-center gap-1 px-2.5 py-1 rounded font-medium transition-colors ${
                 threeDViewType === 'airframe'
                   ? 'bg-blue-600 text-white shadow-2xs font-semibold'
-                  : 'text-slate-400 hover:text-white'
+                  : 'text-slate-600 hover:text-slate-900'
               }`}
             >
               <Box className="w-3 h-3" />
