@@ -1,0 +1,120 @@
+{
+  "base_features": [
+    "flight_hours",
+    "flight_cycles",
+    "rpm",
+    "cht",
+    "egt",
+    "oil_pressure",
+    "oil_temperature",
+    "fuel_flow",
+    "vibration_rms",
+    "map_inhg",
+    "anomaly_score"
+  ],
+  "engineered_features": [
+    "thermal_stress_index",
+    "vib_hour_product",
+    "oil_health_ratio",
+    "boost_per_fuel",
+    "hours_per_cycle"
+  ],
+  "all_features": [
+    "flight_hours",
+    "flight_cycles",
+    "rpm",
+    "cht",
+    "egt",
+    "oil_pressure",
+    "oil_temperature",
+    "fuel_flow",
+    "vibration_rms",
+    "map_inhg",
+    "anomaly_score",
+    "thermal_stress_index",
+    "vib_hour_product",
+    "oil_health_ratio",
+    "boost_per_fuel",
+    "hours_per_cycle"
+  ],
+  "feature_importances": [
+    {
+      "feature": "anomaly_score",
+      "importance": 0.3903
+    },
+    {
+      "feature": "oil_health_ratio",
+      "importance": 0.2586
+    },
+    {
+      "feature": "oil_pressure",
+      "importance": 0.2313
+    },
+    {
+      "feature": "vib_hour_product",
+      "importance": 0.0735
+    },
+    {
+      "feature": "flight_hours",
+      "importance": 0.0176
+    },
+    {
+      "feature": "flight_cycles",
+      "importance": 0.0171
+    },
+    {
+      "feature": "boost_per_fuel",
+      "importance": 0.0018
+    },
+    {
+      "feature": "vibration_rms",
+      "importance": 0.0015
+    },
+    {
+      "feature": "cht",
+      "importance": 0.0011
+    },
+    {
+      "feature": "fuel_flow",
+      "importance": 0.0011
+    },
+    {
+      "feature": "hours_per_cycle",
+      "importance": 0.0011
+    },
+    {
+      "feature": "rpm",
+      "importance": 0.001
+    },
+    {
+      "feature": "map_inhg",
+      "importance": 0.001
+    },
+    {
+      "feature": "oil_temperature",
+      "importance": 0.001
+    },
+    {
+      "feature": "thermal_stress_index",
+      "importance": 0.001
+    },
+    {
+      "feature": "egt",
+      "importance": 0.0009
+    }
+  ],
+  "component_nominal_tbo": {
+    "engine_overall": 2000.0,
+    "cylinder_head": 1800.0,
+    "oil_system": 2000.0,
+    "fuel_system": 1500.0,
+    "turbocharger": 1500.0,
+    "sensors": 2500.0
+  },
+  "maintenance_thresholds": {
+    "continue_monitoring": 500.0,
+    "schedule_inspection": 200.0,
+    "maintenance_soon": 50.0,
+    "critical_immediate": 0.0
+  }
+}

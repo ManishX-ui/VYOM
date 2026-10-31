@@ -1,0 +1,39 @@
+{
+  "dataset_name": "VYOM_Rotax914F_Anomaly_Telemetry_v1",
+  "date_created": "2026-10-31",
+  "description": "Composite dataset combining authentic flight mission telemetry with thermodynamically correlated Rotax 914 F operational simulation.",
+  "record_counts": {
+    "historical_mission_records": 28,
+    "synthetic_normal_records": 2500,
+    "total_normal_training_records": 2528,
+    "synthetic_anomalous_evaluation_records": 600
+  },
+  "monitored_parameters": [
+    "rpm",
+    "cht",
+    "egt",
+    "oilPressure",
+    "oilTemperature",
+    "fuelFlow",
+    "vibrationRMS",
+    "manifoldPressureInHg",
+    "batteryVoltage"
+  ],
+  "anomaly_types": [
+    "ThermalRunaway_CHT",
+    "OilPressure_Loss",
+    "MechanicalVibration_High",
+    "FuelFlow_Disproportionate",
+    "Sensor_OpenCircuit",
+    "Sensor_Drift_MAP"
+  ],
+  "operational_envelope": {
+    "max_continuous_rpm": 2550,
+    "takeoff_5min_rpm": 2720,
+    "max_cht_celsius": 200.0,
+    "nominal_oil_pressure_bar": 4.25,
+    "critical_oil_pressure_bar": 3.0,
+    "nominal_vibration_rms_g": 0.28,
+    "critical_vibration_rms_g": 0.45
+  }
+}

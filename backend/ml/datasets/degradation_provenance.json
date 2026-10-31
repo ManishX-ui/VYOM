@@ -1,0 +1,46 @@
+{
+  "dataset_name": "Rotax 914 F Synthetic Degradation Sequences",
+  "version": "1.0.0",
+  "creation_date": "2026-10-31",
+  "data_type": "SYNTHETIC_PHYSICAL_MODEL",
+  "is_certified_aircraft_data": false,
+  "purpose": "Experimental prototype training & validation for VYOM Digital Twin RUL Regressor",
+  "engine_model": "Rotax 914 F Turbocharged 4-cylinder 4-stroke",
+  "nominal_tbo_hours": 2000.0,
+  "total_records": 4800,
+  "engine_trajectories_count": 12,
+  "split_counts": {
+    "TRAIN": 3200,
+    "VAL": 800,
+    "TEST": 800
+  },
+  "monitored_parameters": [
+    "flight_hours",
+    "flight_cycles",
+    "rpm",
+    "cht",
+    "egt",
+    "oil_pressure",
+    "oil_temperature",
+    "fuel_flow",
+    "vibration_rms",
+    "map_inhg",
+    "anomaly_score"
+  ],
+  "target_parameters": [
+    "actual_rul_hours",
+    "actual_rul_cycles",
+    "overall_health_percent"
+  ],
+  "degradation_models": [
+    "Thermal CHT quadratic scaling (carbon/cooling jacket decay)",
+    "Oil pressure power-law decay (main journal bearing clearance wear)",
+    "Vibration exponential rise (crankshaft race/imbalance fatigue)",
+    "Fuel flow efficiency decay (fuel injector nozzle fouling)",
+    "Turbocharger manifold pressure drop (wastegate seal wear)"
+  ],
+  "limitations": [
+    "Synthetic data generated via non-linear deterministic degradation physics with Gaussian noise.",
+    "Must NOT be utilized for operational flight release decisions on real-world aircraft."
+  ]
+}

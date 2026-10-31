@@ -1,0 +1,134 @@
+{
+  "model_version": "v1.2.0-isoforest-rotax",
+  "base_features": [
+    "rpm",
+    "cht",
+    "egt",
+    "oilPressure",
+    "oilTemperature",
+    "fuelFlow",
+    "vibrationRMS",
+    "manifoldPressureInHg"
+  ],
+  "engineered_features": [
+    "temp_ratio_cht_egt",
+    "oil_p_per_rpm",
+    "vib_per_rpm",
+    "power_proxy",
+    "fuel_per_power"
+  ],
+  "all_features": [
+    "rpm",
+    "cht",
+    "egt",
+    "oilPressure",
+    "oilTemperature",
+    "fuelFlow",
+    "vibrationRMS",
+    "manifoldPressureInHg",
+    "temp_ratio_cht_egt",
+    "oil_p_per_rpm",
+    "vib_per_rpm",
+    "power_proxy",
+    "fuel_per_power"
+  ],
+  "feature_baselines": {
+    "rpm": {
+      "mean": 2398.070371835443,
+      "std": 302.79859749529044,
+      "median": 2461.8,
+      "min": 1401.6,
+      "max": 2750.0
+    },
+    "cht": {
+      "mean": 175.94746835443036,
+      "std": 15.515173817613862,
+      "median": 180.4,
+      "min": 119.3,
+      "max": 204.0
+    },
+    "egt": {
+      "mean": 622.5767405063291,
+      "std": 33.116969604239245,
+      "median": 627.7,
+      "min": 519.0,
+      "max": 681.2
+    },
+    "oilPressure": {
+      "mean": 4.343397943037975,
+      "std": 0.22062027029866269,
+      "median": 4.34,
+      "min": 3.57,
+      "max": 4.9
+    },
+    "oilTemperature": {
+      "mean": 94.50051424050632,
+      "std": 5.210076096542088,
+      "median": 95.6,
+      "min": 73.8,
+      "max": 104.2
+    },
+    "fuelFlow": {
+      "mean": 13.897428797468354,
+      "std": 4.518165396169709,
+      "median": 12.8,
+      "min": 4.6,
+      "max": 23.9
+    },
+    "vibrationRMS": {
+      "mean": 0.24046637658227848,
+      "std": 0.04378748458377852,
+      "median": 0.245,
+      "min": 0.092,
+      "max": 0.38
+    },
+    "manifoldPressureInHg": {
+      "mean": 31.261155063291145,
+      "std": 4.253413810761378,
+      "median": 31.5,
+      "min": 20.0,
+      "max": 39.0
+    },
+    "temp_ratio_cht_egt": {
+      "mean": 0.2822776412447767,
+      "std": 0.016139798795411688,
+      "median": 0.28497080732739555,
+      "min": 0.20547709266276265,
+      "max": 0.31411401656650967
+    },
+    "oil_p_per_rpm": {
+      "mean": 1.8406271228085869,
+      "std": 0.2500101279981886,
+      "median": 1.7544531945472097,
+      "min": 1.5298507462686566,
+      "max": 3.0402278390886432
+    },
+    "vib_per_rpm": {
+      "mean": 0.10016834214339032,
+      "std": 0.01253924330225217,
+      "median": 0.10020824632376867,
+      "min": 0.05938242280285036,
+      "max": 0.1521047046338875
+    },
+    "power_proxy": {
+      "mean": 76.12434926819621,
+      "std": 17.843406458931984,
+      "median": 77.24398500000001,
+      "min": 28.17216,
+      "max": 106.80772999999999
+    },
+    "fuel_per_power": {
+      "mean": 0.1811682911160612,
+      "std": 0.02790339405879001,
+      "median": 0.17495183150658838,
+      "min": 0.11457058943081332,
+      "max": 0.29104062615311854
+    }
+  },
+  "scoring_calibration": {
+    "baseline_min_score": 0.37847101059691196,
+    "baseline_median_score": 0.4319020577056407,
+    "threshold_raw_score": 0.47000000000000003,
+    "scale_denominator": 0.23252898940308814
+  }
+}
