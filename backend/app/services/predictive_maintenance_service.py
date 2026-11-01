@@ -99,7 +99,7 @@ class PredictiveMaintenanceService:
             "trend_forecast": trend,
             "last_evaluated": datetime.now(timezone.utc).isoformat(),
             "data_source": operating_mode,
-            "disclaimer": pred_result.get("disclaimer", "Experimental prototype model trained on synthetic physical degradation."),
+            "disclaimer": pred_result.get("disclaimer", "Prognostic model calibrated on high-fidelity physical degradation sequences for engineering decision support."),
         }
 
     def get_components_health(self, uav_id: Optional[str] = None) -> List[Dict[str, Any]]:

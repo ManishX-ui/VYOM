@@ -178,7 +178,7 @@ export const AdminLoginPage: React.FC = () => {
               VYOM is an advanced aerospace digital twin and telemetry monitoring suite designed
               specifically for Medium Altitude Long Endurance (MALE) Unmanned Aerial Vehicles.
               Developed for high-stakes operational environments, it connects real-time aircraft
-              avionics with physics-informed digital simulations.
+              avionics with physics-informed digital twin models.
             </p>
 
             {/* 3 Light Theme Feature Cards */}

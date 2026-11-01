@@ -122,21 +122,19 @@ export const GeospatialTrackingPage: React.FC = () => {
       <div className="absolute top-4 left-44 z-30 flex items-center gap-2 pointer-events-auto">
         {/* Operational Mode Pills */}
         <div className="flex items-center p-1 rounded-xl bg-black/85 border border-slate-700/80 backdrop-blur-md shadow-2xl">
-          {(['DEMO', 'LIVE', 'REPLAY'] as const).map((mode) => (
+          {(['LIVE', 'REPLAY'] as const).map((mode) => (
             <button
               key={mode}
               onClick={() => handleModeChange(mode)}
-              className={`px-3 py-1 rounded-lg text-xs font-mono font-bold transition-all ${
+              className={`px-3 py-1 rounded-lg text-xs font-mono font-bold transition-all cursor-pointer ${
                 activeTrackingMode === mode
                   ? mode === 'LIVE'
                     ? 'bg-rose-600 text-white shadow-lg'
-                    : mode === 'REPLAY'
-                    ? 'bg-amber-600 text-white shadow-lg'
-                    : 'bg-blue-600 text-white shadow-lg'
+                    : 'bg-amber-600 text-white shadow-lg'
                   : 'text-slate-400 hover:text-white'
               }`}
             >
-              {mode === 'DEMO' ? 'SIMULATION' : mode}
+              {mode}
             </button>
           ))}
         </div>

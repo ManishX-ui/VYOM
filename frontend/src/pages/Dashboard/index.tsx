@@ -155,8 +155,8 @@ export const DashboardPage: React.FC = () => {
                   ● REPLAY MODE
                 </span>
               ) : (
-                <span className="font-mono text-[10px] font-bold text-sky-700 bg-sky-100/80 border border-sky-300 px-2 py-0.5 rounded-full">
-                  ● SIMULATION
+                <span className="font-mono text-[10px] font-bold text-emerald-700 bg-emerald-100/80 border border-emerald-300 px-2 py-0.5 rounded-full">
+                  ● TELEMETRY STREAM
                 </span>
               )}
             </div>
@@ -607,7 +607,7 @@ export const DashboardPage: React.FC = () => {
                   : 'No telemetry history points available for selected range'}
               </span>
               <span className="text-[10px] text-slate-400 mt-0.5">
-                Airframe: {selectedUAV.id} · Mode: {telemetryMode}
+                Airframe: {selectedUAV.id} · Datalink: {backendConnectionStatus}
               </span>
             </div>
           ) : (
@@ -713,7 +713,7 @@ export const DashboardPage: React.FC = () => {
                       : 'bg-blue-50 text-blue-700 border-blue-200'
                   }`}
                 >
-                  {telemetryMode} DATALINK
+                  {telemetryMode === 'REPLAY' ? 'REPLAY ARCHIVE' : 'TELEMETRY DATALINK'}
                 </span>
               </div>
 

@@ -306,7 +306,7 @@ export const EngineHealthPage: React.FC = () => {
 
           <div className="flex items-center justify-between text-xs text-slate-500 pt-1">
             <span className="font-mono text-slate-400">
-              Mode: <span className="font-semibold text-slate-700">{telemetryMode}</span>
+              Stream: <span className="font-semibold text-slate-700">{telemetryMode === 'REPLAY' ? 'REPLAY' : 'ACTIVE'}</span>
             </span>
             <span className="font-mono text-emerald-600 font-medium">Real-time synchronized</span>
           </div>
@@ -744,7 +744,7 @@ export const EngineHealthPage: React.FC = () => {
             <AlertTriangle className="w-8 h-8 text-amber-500 mb-2" />
             <span className="text-sm font-semibold text-slate-700">LIVE Datalink Awaiting Telemetry Stream</span>
             <span className="text-xs text-slate-400 mt-1 max-w-sm">
-              No live telemetry packets received from physical MALE UAV GCS yet. Reconnect datalink or switch to SIMULATION mode.
+              No live telemetry packets received from physical MALE UAV GCS yet. Connect datalink to acquire telemetry stream.
             </span>
           </div>
         ) : historyData.length === 0 ? (

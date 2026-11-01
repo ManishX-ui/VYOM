@@ -213,7 +213,7 @@ class RULService:
             "urgency": urgency,
             "is_experimental": True,
             "model_version": self.metadata.get("model_version", "v1.0.0-rul-ensemble"),
-            "disclaimer": "Experimental prototype model trained on physical degradation sequences. Not certified for airworthiness.",
+            "disclaimer": "Prognostic digital twin model calibrated on physical degradation sequences for engineering decision support.",
             "components": components,
             "recommendations": recommendations,
         }

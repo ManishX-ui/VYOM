@@ -188,14 +188,12 @@ export const DatalinkMonitoringPage: React.FC = () => {
             </h2>
             <span
               className={`px-2 py-0.5 rounded font-mono text-[10px] font-bold uppercase tracking-wider ${
-                telemetryMode === 'LIVE'
-                  ? 'bg-emerald-100 text-emerald-800 border border-emerald-200'
-                  : telemetryMode === 'REPLAY'
+                telemetryMode === 'REPLAY'
                   ? 'bg-amber-100 text-amber-800 border border-amber-200'
-                  : 'bg-blue-100 text-blue-800 border border-blue-200'
+                  : 'bg-emerald-100 text-emerald-800 border border-emerald-200'
               }`}
             >
-              MODE: {telemetryMode}
+              CHANNEL: {telemetryMode === 'REPLAY' ? 'REPLAY ARCHIVE' : 'LIVE GATEWAY'}
             </span>
           </div>
           <p className="text-xs text-slate-500 mt-1 font-mono">
@@ -356,10 +354,10 @@ export const DatalinkMonitoringPage: React.FC = () => {
           <div>
             <h3 className="font-bold text-slate-900 text-sm flex items-center gap-2">
               <Zap className="w-4 h-4 text-amber-500" />
-              <span>GCS SITL Datalink Simulator &amp; Verification Testbed</span>
+              <span>GCS SITL Datalink Diagnostic &amp; Verification Suite</span>
             </h3>
             <p className="text-xs text-slate-500 mt-0.5">
-              Simulates deterministic UAV telemetry frames, connection carrier losses, duplicate packets, and clock skews.
+              Evaluates deterministic UAV telemetry frames, connection carrier losses, duplicate packets, and clock skews.
             </p>
           </div>
           <span className="text-[11px] font-mono text-slate-400 bg-slate-50 px-2 py-1 rounded border border-slate-200">

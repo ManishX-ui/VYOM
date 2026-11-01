@@ -170,7 +170,7 @@ export const LocationTrackingPage: React.FC = () => {
                 : 'bg-slate-100 text-slate-700 border-slate-200'
             }`}
           >
-            Mode: {telemetryMode === 'DEMO' ? 'SIMULATION' : telemetryMode}
+            {telemetryMode === 'REPLAY' ? 'MODE: REPLAY' : 'AIRSPACE: ACTIVE'}
           </span>
 
           {/* GPS Status Indicator */}

@@ -158,7 +158,7 @@ export const DigitalTwinPage: React.FC = () => {
       description: 'MAVLink/MQTT integrated navigation processor with dual GPS/INS and servo bus drivers.',
       spec: 'MAVLink Telemetry Rate: 10 Hz | Packet Loss: < 0.05%.',
       status: 'Connected & Tracking',
-      sensor: `Mode: ${telemetryMode} | Roll: ${telemetry?.rollDeg?.toFixed(1) ?? '0.0'}° | Pitch: ${telemetry?.pitchDeg?.toFixed(1) ?? '0.0'}°`,
+      sensor: `Roll: ${telemetry?.rollDeg?.toFixed(1) ?? '0.0'}° | Pitch: ${telemetry?.pitchDeg?.toFixed(1) ?? '0.0'}° | Heading: ${telemetry?.headingDeg ?? 180}°`,
     },
   };
 
@@ -200,17 +200,17 @@ export const DigitalTwinPage: React.FC = () => {
         <div className="flex flex-wrap items-center gap-2.5">
           {/* Mode Selector */}
           <div className="flex items-center bg-slate-100 p-1 rounded-xl border border-slate-200 text-xs font-semibold">
-            {(['DEMO', 'LIVE', 'REPLAY'] as const).map((mode) => (
+            {(['LIVE', 'REPLAY'] as const).map((mode) => (
               <button
                 key={mode}
                 onClick={() => setTelemetryMode(mode)}
-                className={`px-3 py-1.5 rounded-lg transition-all ${
+                className={`px-3 py-1.5 rounded-lg transition-all cursor-pointer ${
                   telemetryMode === mode
                     ? 'bg-white text-blue-600 font-bold shadow-xs'
                     : 'text-slate-600 hover:text-slate-900'
                 }`}
               >
-                {mode === 'DEMO' ? 'SIMULATION' : mode}
+                {mode}
               </button>
             ))}
           </div>

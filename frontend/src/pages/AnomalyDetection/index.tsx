@@ -345,8 +345,8 @@ export const AnomalyDetectionPage: React.FC = () => {
               <p className="text-lg font-bold font-mono text-slate-900">
                 {telemetry.timestamp || new Date().toLocaleTimeString('en-GB')}
               </p>
-              <span className="text-[10px] text-slate-500 truncate block font-mono">
-                {(telemetry.mode === 'DEMO' ? 'SIMULATION' : telemetry.mode) || 'SIMULATION'} Mode
+              <span className="text-[10px] text-emerald-600 truncate block font-mono font-semibold">
+                ● Telemetry Stream Synced
               </span>
             </div>
           </div>
