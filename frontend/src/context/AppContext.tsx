@@ -156,7 +156,7 @@ export const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children 
   const [backendConnectionStatus, setBackendConnectionStatus] = useState<
     'CONNECTING' | 'CONNECTED' | 'DISCONNECTED' | 'RECONNECTING'
   >('DISCONNECTED');
-  const [telemetryMode, setTelemetryModeState] = useState<'DEMO' | 'REPLAY' | 'LIVE'>('DEMO');
+  const [telemetryMode, setTelemetryModeState] = useState<'DEMO' | 'REPLAY' | 'LIVE'>('LIVE');
   const [simulationScenario, setSimulationScenarioState] = useState<string>('NORMAL_CRUISE');
 
   // Centralized Replay State & Clock (Phase 7)
@@ -320,7 +320,7 @@ export const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children 
         setTelemetry(liveTelemetry);
       }
       if (liveTelemetry.mode) {
-        setTelemetryModeState(liveTelemetry.mode);
+        setTelemetryModeState(liveTelemetry.mode === 'DEMO' ? 'LIVE' : liveTelemetry.mode);
       }
     });
 

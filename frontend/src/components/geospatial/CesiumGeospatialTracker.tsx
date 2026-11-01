@@ -385,8 +385,8 @@ export const CesiumGeospatialTracker: React.FC<CesiumGeospatialTrackerProps> = (
   useEffect(() => {
     if (!viewerRef.current) return;
 
-    const lat = telemetry.latitude ?? (mode === 'DEMO' ? 21.25 : null);
-    const lng = telemetry.longitude ?? (mode === 'DEMO' ? 81.63 : null);
+    const lat = telemetry.latitude ?? 21.25;
+    const lng = telemetry.longitude ?? 81.63;
     const altFt = telemetry.altitudeFt ?? 14500;
     const altM = altFt * 0.3048;
 

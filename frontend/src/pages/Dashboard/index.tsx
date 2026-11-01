@@ -138,7 +138,11 @@ export const DashboardPage: React.FC = () => {
             <div className="flex items-center gap-2">
               <span className="font-bold text-xs text-slate-900">{selectedUAV.name}</span>
               {/* Operating Mode Indicator */}
-              {telemetryMode === 'LIVE' ? (
+              {telemetryMode === 'REPLAY' ? (
+                <span className="font-mono text-[10px] font-bold text-purple-700 bg-purple-100/80 border border-purple-300 px-2 py-0.5 rounded-full">
+                  ● REPLAY MODE
+                </span>
+              ) : (
                 <span
                   className={`font-mono text-[10px] font-bold px-2 py-0.5 rounded-full border ${
                     backendConnectionStatus === 'CONNECTED' && telemetry.datalink_status !== 'DISCONNECTED'
@@ -149,14 +153,6 @@ export const DashboardPage: React.FC = () => {
                   {backendConnectionStatus === 'CONNECTED' && telemetry.datalink_status !== 'DISCONNECTED'
                     ? '● LIVE AIRSPACE'
                     : '● LIVE: DISCONNECTED'}
-                </span>
-              ) : telemetryMode === 'REPLAY' ? (
-                <span className="font-mono text-[10px] font-bold text-purple-700 bg-purple-100/80 border border-purple-300 px-2 py-0.5 rounded-full">
-                  ● REPLAY MODE
-                </span>
-              ) : (
-                <span className="font-mono text-[10px] font-bold text-sky-700 bg-sky-100/80 border border-sky-300 px-2 py-0.5 rounded-full">
-                  ● DEMO SIMULATION
                 </span>
               )}
             </div>

@@ -744,7 +744,7 @@ export const EngineHealthPage: React.FC = () => {
             <AlertTriangle className="w-8 h-8 text-amber-500 mb-2" />
             <span className="text-sm font-semibold text-slate-700">LIVE Datalink Awaiting Telemetry Stream</span>
             <span className="text-xs text-slate-400 mt-1 max-w-sm">
-              No live telemetry packets received from physical MALE UAV GCS yet. Reconnect datalink or switch to DEMO mode for simulation.
+              No live telemetry packets received from physical MALE UAV GCS yet. Reconnect datalink or inspect mission replay logs.
             </span>
           </div>
         ) : historyData.length === 0 ? (

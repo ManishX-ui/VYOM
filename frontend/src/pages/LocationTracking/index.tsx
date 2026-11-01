@@ -161,16 +161,14 @@ export const LocationTrackingPage: React.FC = () => {
           {/* Operating Mode Badge */}
           <span
             className={`font-mono text-xs px-2.5 py-1 rounded font-semibold border ${
-              telemetryMode === 'LIVE'
-                ? isLiveDisconnected
-                  ? 'bg-amber-50 text-amber-700 border-amber-300'
-                  : 'bg-emerald-50 text-emerald-700 border-emerald-300'
-                : telemetryMode === 'REPLAY'
+              telemetryMode === 'REPLAY'
                 ? 'bg-blue-50 text-blue-700 border-blue-300'
-                : 'bg-slate-100 text-slate-700 border-slate-200'
+                : isLiveDisconnected
+                ? 'bg-amber-50 text-amber-700 border-amber-300'
+                : 'bg-emerald-50 text-emerald-700 border-emerald-300'
             }`}
           >
-            Mode: {telemetryMode} {telemetryMode === 'DEMO' ? '(Simulated)' : ''}
+            Mode: {telemetryMode === 'REPLAY' ? 'REPLAY' : 'LIVE'}
           </span>
 
           {/* GPS Status Indicator */}

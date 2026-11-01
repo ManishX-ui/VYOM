@@ -316,51 +316,6 @@ export const SensorMonitoringPage: React.FC = () => {
       </div>
 
       {/* =========================================
-          DEMO FAILURE SCENARIO SELECTOR (DEMO Mode Only)
-          ========================================= */}
-      {telemetryMode === 'DEMO' && (
-        <div className="p-4 rounded-xl bg-slate-50 border border-slate-200 shadow-2xs space-y-2">
-          <div className="flex items-center justify-between">
-            <div className="flex items-center gap-2">
-              <Radio className="w-4 h-4 text-blue-600 animate-pulse" />
-              <span className="text-xs font-bold text-slate-800 uppercase tracking-wider">
-                DEMO Sensor Failure Simulation Testbed
-              </span>
-            </div>
-            <span className="text-[11px] font-mono text-slate-500">
-              Active Scenario: <span className="font-semibold text-blue-600">{simulationScenario}</span>
-            </span>
-          </div>
-
-          <div className="flex flex-wrap items-center gap-1.5 text-xs">
-            {[
-              { id: 'NORMAL_CRUISE', label: 'Nominal Cruise' },
-              { id: 'SENSOR_DISCONNECTED', label: 'Sensor Disconnected' },
-              { id: 'CHT_OVERHEAT', label: 'CHT Overheat' },
-              { id: 'EGT_ABNORMAL', label: 'EGT Abnormal' },
-              { id: 'OIL_PRESSURE_FAILURE', label: 'Oil Pressure Drop' },
-              { id: 'GPS_SIGNAL_LOSS', label: 'GPS Signal Loss' },
-              { id: 'VIBRATION_ABNORMAL', label: 'Vibration Spike' },
-              { id: 'INTERMITTENT_COMM', label: 'Intermittent Comm' },
-              { id: 'STALE_TELEMETRY', label: 'Stale Telemetry' },
-            ].map((sc) => (
-              <button
-                key={sc.id}
-                onClick={() => setSimulationScenario(sc.id)}
-                className={`px-2.5 py-1 rounded-md font-mono text-[11px] font-medium transition-all cursor-pointer ${
-                  simulationScenario === sc.id
-                    ? 'bg-blue-600 text-white shadow-2xs font-semibold'
-                    : 'bg-white border border-slate-200 text-slate-700 hover:bg-slate-100'
-                }`}
-              >
-                {sc.label}
-              </button>
-            ))}
-          </div>
-        </div>
-      )}
-
-      {/* =========================================
           FILTERS & SEARCH BAR
           ========================================= */}
       <div className="flex flex-col md:flex-row md:items-center justify-between gap-3 p-4 rounded-xl bg-white border border-slate-200 shadow-2xs">

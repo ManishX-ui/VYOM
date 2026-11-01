@@ -200,11 +200,11 @@ export const DigitalTwinPage: React.FC = () => {
         <div className="flex flex-wrap items-center gap-2.5">
           {/* Mode Selector */}
           <div className="flex items-center bg-slate-100 p-1 rounded-xl border border-slate-200 text-xs font-semibold">
-            {(['DEMO', 'LIVE', 'REPLAY'] as const).map((mode) => (
+            {(['LIVE', 'REPLAY'] as const).map((mode) => (
               <button
                 key={mode}
                 onClick={() => setTelemetryMode(mode)}
-                className={`px-3 py-1.5 rounded-lg transition-all ${
+                className={`px-3 py-1.5 rounded-lg transition-all cursor-pointer ${
                   telemetryMode === mode
                     ? 'bg-white text-blue-600 font-bold shadow-xs'
                     : 'text-slate-600 hover:text-slate-900'
