@@ -147,9 +147,9 @@ export const AppLayout: React.FC = () => {
           </nav>
         </div>
 
-        {/* Sidebar Footer: Active Demonstration Platform Card */}
+        {/* Sidebar Footer: Active Platform Card */}
         <div className="p-3 border-t border-[#E5E7EB]">
-          {/* Active UAV Demonstration Card */}
+          {/* Active UAV Platform Card */}
           <Link
             to="/connect-uav"
             title="Click to Switch or Pair UAV"

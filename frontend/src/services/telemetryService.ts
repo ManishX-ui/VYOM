@@ -57,7 +57,6 @@ class TelemetryService {
         this.isConnecting = false;
         this.setStatus('CONNECTED');
         this.startHeartbeat();
-        this.setMode('LIVE');
       };
 
       this.ws.onmessage = (event) => {
